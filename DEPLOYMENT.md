@@ -15,7 +15,7 @@ Official references:
 
 1. Open [Neon Console](https://console.neon.tech/) and choose the database this application should use.
 2. Copy its PostgreSQL connection string. Prefer Neon's pooled connection string for the web application and retain SSL mode (usually sslmode=require).
-3. Never put a database URL, password, Brevo API key, Twilio token, or Gemini key in GitHub source code.
+3. Never put a database URL, password, Brevo API key, or Twilio token in GitHub source code.
 4. The application uses PostgreSQL crypt() and gen_salt(); the pgcrypto extension is needed.
 
 ### Schema: choose the safe path
@@ -76,7 +76,6 @@ Email OTP will not work until Brevo sender verification and account/API configur
 | TWILIO_ACCOUNT_SID | Twilio login-alert SMS |
 | TWILIO_AUTH_TOKEN | Twilio login-alert SMS |
 | TWILIO_FROM_NUMBER | Twilio sender number |
-| VISHNURAJMART_GEMINI_API_KEY | AI help chat |
 
 Only set optional integrations that you have configured. Keep all keys private.
 
