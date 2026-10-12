@@ -37,6 +37,19 @@ a{color:var(--violet-deep);font-weight:750;text-decoration:none}a:hover{text-dec
 .user-chip-copy{display:flex;flex-direction:column;line-height:1.25}.user-chip-copy strong{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#292942;font-size:11px}.user-chip-copy small{color:#999bb0;font-size:8px;font-weight:900;letter-spacing:1px}
 .container{width:100%;max-width:1580px;margin:0 auto;padding:31px clamp(18px,3vw,43px) 60px;min-height:72vh}#message{position:relative;z-index:70}
 .message{max-width:900px;margin:0 0 20px;padding:13px 16px;border:1px solid #ffcfbf;border-radius:13px;background:#fff0e9;color:#8d3827;font-weight:720;box-shadow:0 6px 20px rgba(50,40,64,.04)}
+.warning-popup-backdrop{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:20px;background:rgba(19,18,43,.58);backdrop-filter:blur(6px)}
+.warning-popup-card{width:min(430px,100%);padding:30px 27px 25px;border:1px solid #ffe0d6;border-radius:24px;background:#fff;color:#25243b;box-shadow:0 28px 90px rgba(15,14,45,.28);text-align:center;animation:warningPopupIn .18s ease-out}
+.warning-popup-symbol{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 13px;border-radius:17px;background:#fff0e8;color:#c64d32;font-size:30px;font-weight:900}
+.warning-popup-kicker{margin:0 0 8px;color:#c64d32;font-size:10px;font-weight:900;letter-spacing:1.8px}
+.warning-popup-card h2{margin:0 0 9px;font-size:23px}
+.warning-popup-copy{margin:0 auto 22px;color:#6d6b80;line-height:1.6;overflow-wrap:anywhere}
+.warning-popup-button{min-width:130px;padding:12px 22px;border:0;border-radius:12px;background:#5146bb;color:#fff;font-weight:850;cursor:pointer}
+.warning-popup-button:hover{background:#3d329e}
+.admin-delete-user{padding:8px 12px;border:1px solid #ffd5d5;border-radius:10px;background:#fff0f0;color:#b42332;font-weight:850;cursor:pointer;white-space:nowrap}
+.admin-delete-user:hover{background:#ffe0e0}
+.admin-protected{color:#85839a;font-size:12px;font-weight:800}
+@keyframes warningPopupIn{from{opacity:0;transform:translateY(7px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
 h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.055em;line-height:1.15}h1{font-size:clamp(34px,4vw,54px);margin-bottom:14px}h2{font-size:clamp(24px,3vw,34px);margin-bottom:12px}h3{font-size:18px;margin-bottom:9px}p{color:var(--muted)}
 .small{font-size:12px;color:var(--muted);line-height:1.6}label{display:block;margin:14px 0 7px;color:#42445e;font-size:11px;font-weight:850;letter-spacing:.015em}
 input,select,textarea{display:block;width:100%;min-width:0;padding:12px 13px;border:1px solid #dedfeb;border-radius:11px;background:#fff;color:var(--ink);outline:none;transition:border .15s,box-shadow .15s}
@@ -584,6 +597,38 @@ function showMessage(text) {
     }, 3500);
 }
 
+function showWarningPopup(message) {
+    closeWarningPopup();
+    const overlay = document.createElement("div");
+    overlay.id = "warningPopup";
+    overlay.className = "warning-popup-backdrop";
+    overlay.innerHTML = `
+        <div class="warning-popup-card" role="alertdialog" aria-modal="true" aria-labelledby="warningPopupTitle">
+            <div class="warning-popup-symbol" aria-hidden="true">!</div>
+            <p class="warning-popup-kicker">VALIDATION WARNING</p>
+            <h2 id="warningPopupTitle">Please check and try again</h2>
+            <p class="warning-popup-copy">${escapeHtml(String(message))}</p>
+            <button type="button" class="warning-popup-button" onclick="closeWarningPopup()">Got it</button>
+        </div>
+    `;
+    overlay.addEventListener("click", event => {
+        if (event.target === overlay) closeWarningPopup();
+    });
+    const closeOnEscape = event => {
+        if (event.key === "Escape") closeWarningPopup();
+    };
+    overlay._escapeHandler = closeOnEscape;
+    document.addEventListener("keydown", closeOnEscape);
+    document.body.appendChild(overlay);
+}
+
+function closeWarningPopup() {
+    const popup = document.getElementById("warningPopup");
+    if (!popup) return;
+    if (popup._escapeHandler) document.removeEventListener("keydown", popup._escapeHandler);
+    popup.remove();
+}
+
 function updateNav() {
     ["guestNav", "buyerNav", "sellerNav", "adminNav"].forEach(function(id) {
         const nav = document.getElementById(id);
@@ -705,7 +750,8 @@ async function sendResetOtp(isResend = false) {
         });
 
         if (data.status === "error") {
-            showMessage(data.message);
+            if (/password/i.test(data.message || "")) showWarningPopup(data.message);
+            else showMessage(data.message);
             return;
         }
 
@@ -760,9 +806,7 @@ async function resetPassword() {
         !/[0-9]/.test(newPassword) ||
         !/[^A-Za-z0-9]/.test(newPassword)
     ) {
-        showMessage(
-            "Password needs 8+ characters, uppercase, lowercase, number and symbol"
-        );
+        showWarningPopup("Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a symbol.");
         return;
     }
 
@@ -776,7 +820,8 @@ async function resetPassword() {
         });
 
         if (data.status === "error") {
-            showMessage(data.message);
+            if (/password/i.test(data.message || "")) showWarningPopup(data.message);
+            else showMessage(data.message);
             return;
         }
 
@@ -785,7 +830,8 @@ async function resetPassword() {
         pendingResetEmail = "";
         showLogin();
     } catch (error) {
-        showMessage(error.message);
+        if (/password/i.test(error.message || "")) showWarningPopup(error.message);
+        else showMessage(error.message);
     }
 }
 
@@ -827,7 +873,7 @@ async function register() {
         !/[0-9]/.test(password) ||
         !/[^A-Za-z0-9]/.test(password)
     ) {
-        showMessage("Password needs 8+ characters, uppercase, lowercase, number and symbol");
+        showWarningPopup("Password must be at least 8 characters and include an uppercase letter, a lowercase letter, a number, and a symbol.");
         return;
     }
 
@@ -939,7 +985,7 @@ async function login() {
             showAdminDashboard();
         }
     } catch (error) {
-        showMessage(error.message);
+        showWarningPopup(error.message || "Login failed. Check your email and password.");
     }
 }
 
@@ -1442,7 +1488,13 @@ async function showAdminDashboard() {
             api("/admin/users"), api("/admin/orders"), api("/products")
         ]);
         document.getElementById("adminUsers").innerHTML = Array.isArray(users) && users.length
-            ? `<div class="table-wrap"><table><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Role</th><th>Verified</th></tr>${users.map(u => `<tr><td>${u.id}</td><td>${escapeHtml(u.name)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.mobile)}</td><td>${escapeHtml(u.role)}</td><td>${u.verified ? "Yes" : "No"}</td></tr>`).join("")}</table></div>`
+            ? `<div class="table-wrap"><table><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Role</th><th>Verified</th><th>Action</th></tr>${users.map(u => {
+                const protectedAccount = String(u.role).toUpperCase() === "ADMIN";
+                const action = protectedAccount
+                    ? '<span class="admin-protected">Protected</span>'
+                    : `<button class="admin-delete-user" onclick="adminRemoveUser(${Number(u.id)})">Delete</button>`;
+                return `<tr><td>${Number(u.id)}</td><td>${escapeHtml(u.name)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.mobile)}</td><td>${escapeHtml(u.role)}</td><td>${u.verified ? "Yes" : "No"}</td><td>${action}</td></tr>`;
+            }).join("")}</table></div>`
             : "<p>No users found.</p>";
         document.getElementById("adminOrders").innerHTML = Array.isArray(orders) && orders.length
             ? `<div class="table-wrap"><table><tr><th>Order</th><th>Buyer</th><th>Email</th><th>Total</th><th>Status</th><th>Created</th></tr>${orders.map(o => `<tr><td>${o.order_id}</td><td>${escapeHtml(o.buyer)}</td><td>${escapeHtml(o.email)}</td><td>₹${Number(o.total).toFixed(2)}</td><td>${escapeHtml(o.status)}</td><td>${escapeHtml(o.created_at)}</td></tr>`).join("")}</table></div>`
@@ -1452,6 +1504,30 @@ async function showAdminDashboard() {
             : "<p>No products found.</p>";
     } catch (error) {
         showMessage("Admin panel could not load: " + error.message);
+    }
+}
+
+async function adminRemoveUser(userId) {
+    if (!currentUser || currentUser.role !== "ADMIN") {
+        showWarningPopup("Only an admin can delete user accounts.");
+        return;
+    }
+    if (!Number.isInteger(Number(userId)) || Number(userId) <= 0) {
+        showWarningPopup("Invalid user selected.");
+        return;
+    }
+    if (!confirm("Delete this user account? Admin accounts and users with order history are protected.")) return;
+
+    try {
+        const result = await api("/admin/users/" + Number(userId), { method: "DELETE" });
+        if (result.status === "error") {
+            showWarningPopup(result.message || "The user account could not be deleted.");
+            return;
+        }
+        showMessage(result.message || "User deleted successfully");
+        await showAdminDashboard();
+    } catch (error) {
+        showWarningPopup(error.message || "The user account could not be deleted.");
     }
 }
 
