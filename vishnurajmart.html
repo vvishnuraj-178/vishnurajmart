@@ -750,8 +750,7 @@ async function sendResetOtp(isResend = false) {
         });
 
         if (data.status === "error") {
-            if (/password/i.test(data.message || "")) showWarningPopup(data.message);
-            else showMessage(data.message);
+            showMessage(data.message);
             return;
         }
 
@@ -884,7 +883,8 @@ async function register() {
         });
 
         if (data.status === "error") {
-            showMessage(data.message);
+            if (/password/i.test(data.message || "")) showWarningPopup(data.message);
+            else showMessage(data.message);
             return;
         }
 
