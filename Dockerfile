@@ -11,6 +11,7 @@ RUN apt-get update \
        make \
        pkg-config \
        libdrogon-dev \
+       libjsoncpp-dev \
        libcurl4-openssl-dev \
        libpq-dev \
     && rm -rf /var/lib/apt/lists/*
