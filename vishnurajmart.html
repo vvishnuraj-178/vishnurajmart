@@ -9,103 +9,144 @@
 
 <style>
 
-:root{
-  color-scheme:light;--ink:#202638;--muted:#717789;--brand:#e45e3c;--brand-dark:#bf4528;
-  --accent:#c6f36a;--canvas:#f6f3ee;--paper:#fffefa;--line:#e8e2d9;--navy:#191f33;
-  --blue:#5368ec;--blue-soft:#edf0ff;--success:#26794d;--danger:#bd3e42;--radius:22px;
-  --shadow:0 18px 52px rgba(32,38,56,.08)
-}
+:root{--ink:#171a2e;--muted:#73788e;--line:#e5e6ef;--paper:#fff;--canvas:#f5f5fa;--violet:#6654f5;--violet-deep:#4e3ed1;--lime:#d9ff61;--coral:#ff795d;--navy:#17152c;--navy-2:#22203d;--blue-soft:#efedff;--green:#33825c;--red:#c43f52;--amber:#d58b26;--radius:20px;--shadow:0 16px 46px rgba(31,29,69,.07)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
-body:before{content:"";height:5px;display:block;background:linear-gradient(90deg,var(--brand) 0 32%,#efad50 32% 58%,#8e9bf6 58% 82%,var(--accent) 82%)}
-button,input,select,textarea{font:inherit}button{border:1px solid transparent;border-radius:13px;padding:11px 16px;background:var(--brand);color:white;cursor:pointer;font-weight:760;letter-spacing:-.02em;transition:transform .18s ease,background .18s ease,box-shadow .18s ease}
-button:hover{background:var(--brand-dark);box-shadow:0 9px 22px rgba(228,94,60,.2);transform:translateY(-1px)}button:active{transform:translateY(0)}button:disabled{opacity:.48;cursor:not-allowed;box-shadow:none;transform:none}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #8e9bf6;outline-offset:3px}
-a{color:var(--brand-dark);font-weight:750;text-decoration:none}a:hover{text-decoration:underline}.hidden{display:none!important}
-.site-header{position:sticky;z-index:100;top:0;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:86px;padding:13px max(22px,calc((100% - 1320px)/2));background:rgba(25,31,51,.97);border-bottom:1px solid rgba(255,255,255,.1);backdrop-filter:blur(18px);color:#fff}
-.brand{display:flex;align-items:center;gap:12px;min-width:max-content;color:#fff;cursor:pointer}.brand:hover{text-decoration:none}
-.brand-mark{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:var(--accent);color:var(--navy);font-weight:1000;font-size:22px;letter-spacing:-2px;box-shadow:0 7px 25px rgba(198,243,106,.12)}
-.brand-copy{display:flex;flex-direction:column;line-height:1.16;gap:5px}.brand-copy strong{font-size:18px;letter-spacing:-.65px}.brand-copy small{font-size:9px;color:#c1c7d8;letter-spacing:1.45px;font-weight:800}
-.header-right{display:flex;align-items:center;justify-content:flex-end;gap:20px;min-width:0}.header-note{display:flex;align-items:center;gap:8px;color:#c6ccda;font-size:12px;font-weight:650;white-space:nowrap}
-.live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(198,243,106,.12)}
-.site-header nav{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-.site-header nav button{padding:9px 12px;border:1px solid transparent;background:transparent;color:#e4e7ef;border-radius:11px;font-size:12px;font-weight:750;box-shadow:none}
-.site-header nav button:hover{background:#30374d;color:white;transform:none}.site-header #guestNav button:last-child{background:var(--accent);color:var(--navy)}.site-header #guestNav button:last-child:hover{background:#d7ff8c}
-.badge{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;margin-left:4px;border-radius:8px;background:var(--accent);color:var(--navy);font-size:11px;font-weight:900}
-.container{width:min(1320px,100%);margin:0 auto;padding:32px 28px 66px;min-height:68vh}#message{position:sticky;top:96px;z-index:80}
-.message{max-width:700px;margin:0 auto 18px;padding:13px 18px;border:1px solid #f1b9ad;border-radius:15px;background:#fff0eb;color:#862f20;font-weight:720;box-shadow:var(--shadow)}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
-h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.055em;line-height:1.15}h1{font-size:clamp(34px,4vw,55px);margin-bottom:14px}h2{font-size:clamp(24px,3vw,34px);margin-bottom:12px}h3{font-size:20px;margin-bottom:10px}p{color:var(--muted)}
-.small{font-size:12px;color:var(--muted);line-height:1.6}label{display:block;margin:15px 0 7px;color:#343b4f;font-size:12px;font-weight:820;letter-spacing:.015em}
-input,select,textarea{width:100%;min-width:0;padding:12px 14px;border:1px solid #dddfe7;border-radius:12px;background:#fff;color:var(--ink);outline:none;transition:border .15s,box-shadow .15s}
-input:hover,select:hover,textarea:hover{border-color:#b8bfcc}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(83,104,236,.1)}textarea{min-height:112px;resize:vertical}input[type=file]{padding:9px;background:#f8f7f3}input[type=number]{font-variant-numeric:tabular-nums}
-.auth-box{max-width:510px;margin:32px auto;padding:34px 36px;position:relative;overflow:hidden}.auth-box:before{content:"V.  /  YOUR MARKETPLACE ACCOUNT";display:block;margin:-34px -36px 28px;padding:15px 36px;background:var(--navy);color:var(--accent);font-size:10px;font-weight:900;letter-spacing:1.7px}
-.auth-box h2{font-size:32px}.auth-box>button{width:100%;margin-top:16px}.auth-box .small{margin:15px 0 0}.password-wrap,.password-box{display:flex;align-items:center;gap:8px}.password-wrap input,.password-box input{flex:1}
-.password-toggle,.show-password{background:#eeedf7;color:#414b7a;border:1px solid #e1e2f0;white-space:nowrap;box-shadow:none}.password-toggle:hover,.show-password:hover{background:#dfe3ff;color:#252f6b;box-shadow:none}.auth-box .password-toggle,.auth-box .show-password{width:auto;margin:0}
-.page-kicker{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:3px 0 17px;font-size:10px;font-weight:900;letter-spacing:1.6px;color:#818696}.catalog-note{font-size:11px;font-weight:650;letter-spacing:0;color:#9296a2}
-.hero{position:relative;overflow:hidden;border-radius:30px}.hero-storefront{display:grid;grid-template-columns:1.1fr .9fr;min-height:420px;padding:clamp(28px,5vw,68px);background:#20263b;color:white;isolation:isolate}
-.hero-storefront:before{content:"";position:absolute;z-index:-1;width:520px;height:520px;right:-110px;top:-185px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#f4bc83 0,#e66a46 35%,#ae4237 69%,transparent 70%);opacity:.98}
-.hero-storefront:after{content:"";position:absolute;z-index:-1;width:320px;height:320px;right:18%;bottom:-230px;border:1px solid rgba(255,255,255,.17);border-radius:50%;box-shadow:0 0 0 34px rgba(255,255,255,.04),0 0 0 74px rgba(255,255,255,.03)}
-.hero-content{align-self:center;max-width:630px;position:relative;z-index:2}.hero-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.17);border-radius:999px;color:var(--accent);font-size:10px;letter-spacing:1.8px;font-weight:900}
-.hero-storefront h1{font-size:clamp(45px,5.8vw,76px);line-height:.98;max-width:620px;margin:23px 0 19px;color:white;letter-spacing:-.075em}.hero-storefront h1 em{font-style:normal;color:var(--accent)}
-.hero-storefront p{max-width:480px;color:#d4d8e4;font-size:15px;line-height:1.8}.hero-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:28px}
-.hero-btn{background:var(--accent);color:var(--navy);padding:14px 18px}.hero-btn:hover{background:#dcff9b}.trust-note{font-size:11px;color:#c3c8d5;font-weight:750}
-.hero-visual{position:relative;min-height:275px;display:grid;place-items:center}.hero-orbit{display:grid;place-items:center;width:min(280px,90%);aspect-ratio:1;border:1px solid rgba(255,255,255,.25);border-radius:50%;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 22px rgba(255,255,255,.025),0 22px 50px rgba(0,0,0,.1);transform:rotate(-8deg)}
-.hero-orbit-mark{display:grid;place-items:center;width:116px;height:116px;border-radius:35px;background:var(--accent);color:var(--navy);font-size:52px;font-weight:1000;letter-spacing:-6px;box-shadow:0 22px 55px rgba(0,0,0,.2)}
-.hero-orbit-caption{position:absolute;bottom:30px;color:white;font-size:9px;letter-spacing:2px;font-weight:900}.float-tile{position:absolute;display:flex;align-items:center;gap:11px;padding:13px 15px;border:1px solid rgba(255,255,255,.38);border-radius:17px;background:rgba(255,250,244,.93);color:var(--navy);font-size:12px;font-weight:800;line-height:1.35;box-shadow:0 15px 34px rgba(0,0,0,.17)}
-.float-tile span{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:#ffd8cb;color:#9e3d2b;font-size:18px}.tile-one{top:26px;right:-2px}.tile-two{bottom:24px;left:-4px}
-.section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:47px 0 20px}.section-heading h2{margin:0}.section-heading>p{max-width:350px;font-size:12px;margin:0}
-.eyebrow{margin:0 0 7px;font-size:10px;font-weight:950;letter-spacing:1.8px;color:#8a8f9e}.eyebrow.light{color:var(--accent)}
-.toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px;margin-bottom:24px;border:1px solid var(--line);border-radius:20px;background:#fffdfa;box-shadow:0 8px 24px rgba(32,38,56,.035)}
-.search-control{display:flex;align-items:center;gap:10px;flex:1;max-width:600px;margin:0;padding:0 13px;border:1px solid #e7e2da;border-radius:13px;background:#f8f6f1}.search-control input{border:0;background:transparent;box-shadow:none;padding:11px 0}.search-glyph{font-size:25px;color:var(--brand)}
-.chips{display:flex;align-items:center;gap:6px;flex-wrap:wrap}.chip{padding:9px 12px;background:transparent;border:1px solid transparent;color:#757b8b;font-size:11px;box-shadow:none}.chip:hover{background:#fff0e9;color:#a64329;box-shadow:none;transform:none}.chip.active{background:var(--navy);color:white}
-.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:19px}.product{display:flex;flex-direction:column;min-width:0;padding:12px 12px 16px;border:1px solid var(--line);border-radius:22px;background:var(--paper);box-shadow:0 8px 24px rgba(32,38,56,.035);transition:transform .2s,box-shadow .2s,border .2s}
-.product:hover{transform:translateY(-4px);border-color:#f0b7a5;box-shadow:0 19px 38px rgba(32,38,56,.09)}.product-image{width:100%;height:220px;object-fit:cover;border-radius:15px;background:#efebe4}
-.product h3{margin:14px 4px 7px;font-size:17px;letter-spacing:-.04em}.product .small{margin:0 4px 10px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:54px}.product>p{margin:4px}
-.product .badge{align-self:flex-start;margin:0;background:#fce9e1;color:#a24229;font-size:10px;letter-spacing:.02em}.product .price,.price{margin:4px 4px 0;color:var(--brand-dark);font-size:20px;font-weight:950;letter-spacing:-.045em}.product .stock{font-size:11px;font-weight:800;color:var(--success)}.product .seller{font-size:11px;color:#878b98;margin-bottom:12px}
-.product .password-toggle{margin-top:auto;margin-bottom:8px}.product input{margin:0 0 8px}.product>button:last-child{width:100%}
-.empty{padding:25px;border:1px dashed #cbcbd5;border-radius:17px;background:rgba(255,255,255,.6);color:#7b8090;text-align:center;font-weight:650;grid-column:1/-1}
-.section-header-large{margin:0 0 25px;padding:34px 38px;border-radius:25px;background:#fffdfa;border:1px solid var(--line);box-shadow:var(--shadow)}.section-header-large h1{margin:3px 0 9px;font-size:clamp(32px,4vw,48px)}.section-header-large p:last-child{margin-bottom:0}
-#cartSection .section-header-large{background:#20263b;color:white;border:0}#cartSection .section-header-large .eyebrow{color:var(--accent)}#cartSection .section-header-large p:last-child{color:#cbd0df}
-.cart-workspace{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);align-items:start;gap:20px}.cart-card{min-width:0}.cart-card h3{margin:24px 0 15px;font-size:27px}.cart-card>button{margin-top:5px}
-.checkout-aside{position:relative;overflow:hidden;padding:26px;border-radius:22px;background:#fce4db;border:1px solid #f2cabc}.checkout-aside:after{content:"✓";position:absolute;right:-14px;bottom:-62px;font-size:170px;line-height:1;color:rgba(228,94,60,.1);font-weight:1000}
-.aside-label{display:inline-block;margin-bottom:14px;font-size:9px;letter-spacing:1.8px;font-weight:950;color:#9f422c}.checkout-aside h2{font-size:29px;max-width:250px}.checkout-aside p,.checkout-aside li{font-size:12px;color:#6d4b45}.checkout-aside ul{padding-left:18px;margin-bottom:0}
-#buyerOrdersSection .section-header-large{background:#e6f0e9}#buyerOrdersSection .section-header-large .eyebrow{color:#30704a}
-.order-hints{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:-4px 0 23px}.order-hint{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid #dfe5db;border-radius:16px;background:#fbfcf8}
-.order-hint span{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:12px;background:#dcefdc;color:#2d6f43;font-weight:950}.order-hint strong{display:block;font-size:12px}.order-hint small{display:block;color:#7a8378;font-size:10px}
-#buyerOrders{padding:22px;border:1px solid var(--line);border-radius:22px;background:white;box-shadow:var(--shadow)}
-.dashboard-intro{position:relative;display:flex;align-items:center;justify-content:space-between;gap:28px;overflow:hidden;padding:38px 42px;margin:0 0 24px;border-radius:27px;background:#20263b;color:white}.seller-intro{background:linear-gradient(120deg,#20263b 0%,#303e6c 63%,#5769d7 100%)}
-.seller-intro:after{content:"";position:absolute;right:17%;top:-160px;width:370px;height:370px;border:1px solid rgba(255,255,255,.15);border-radius:50%;box-shadow:0 0 0 35px rgba(255,255,255,.025),0 0 0 75px rgba(255,255,255,.025)}
-.dashboard-intro>div:first-child{position:relative;z-index:1;max-width:650px}.dashboard-intro h1{margin:9px 0 12px;font-size:clamp(35px,4vw,53px);color:white}.dashboard-intro p:not(.eyebrow){max-width:600px;margin:0;color:#d8dceb}
-.intro-ornament{position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;width:150px;height:150px;flex:0 0 150px;padding:20px;border-radius:43px 43px 43px 15px;background:var(--accent);color:var(--navy);transform:rotate(5deg)}
-.intro-ornament span,.intro-ornament small{font-size:9px;letter-spacing:1.6px;font-weight:950}.intro-ornament strong{font-size:26px;line-height:1.2;letter-spacing:-1.5px}
-.seller-layout{display:grid;grid-template-columns:minmax(0,.93fr) minmax(0,1.07fr);align-items:start;gap:21px}.seller-editor{border-top:5px solid var(--blue)}.seller-form-title{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:18px}.seller-form-title h2{margin:0;font-size:27px}.seller-form-title .small{max-width:180px;text-align:right}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.row>div{min-width:0}
-.image-uploader{display:grid;grid-template-columns:125px minmax(0,1fr);gap:15px;align-items:start;margin:10px 0 15px;padding:14px;border:1px dashed #cdd2e2;border-radius:17px;background:#f7f8fe}
-.image-preview{width:125px;height:128px;object-fit:cover;border-radius:13px;background:#e7eaf4}.image-tools{min-width:0}.image-tools input{margin-bottom:8px}.image-help{display:block;color:#858b9c;font-size:10px;line-height:1.5;margin:0 0 9px}
-.seller-inventory{min-width:0;padding:23px;border:1px solid #e1e3f5;border-radius:23px;background:#f0f1fb}.section-heading.compact{margin:0 0 17px;align-items:center}.section-heading.compact h2{font-size:27px}
-.section-pill{padding:7px 10px;border-radius:999px;background:#dfe3ff;color:#414fb4;font-size:9px;font-weight:950;letter-spacing:1px;white-space:nowrap}
-.seller-product-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.seller-product-card{min-width:0;padding:11px;border:1px solid #e2e3ed;border-radius:18px;background:#fff;box-shadow:0 7px 18px rgba(30,39,80,.04)}
-.seller-product-card img{width:100%;height:155px;object-fit:cover;border-radius:12px;background:#f0f0f6}.seller-product-card h3{margin:11px 2px 6px;font-size:16px}.seller-product-card .small{margin:0 2px}.seller-product-card .price{font-size:18px;margin:6px 2px 12px}
-.actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.actions button{padding:8px 10px;font-size:11px}.danger-button{background:#ffeded;color:#ab2e38;border:1px solid #f8d1d5;box-shadow:none}.danger-button:hover{background:#f9d7da;color:#8d1d27;box-shadow:none}
-#sellerOrdersSection .section-header-large{background:#e7eaff;border-color:#dbe0ff}#sellerOrdersSection .section-header-large .eyebrow{color:#4c5bd2}
-#sellerOrders{padding:20px;border:1px solid #dce0f0;border-radius:22px;background:#fff;box-shadow:var(--shadow)}
-#reviewsSection>.card{max-width:920px;margin:0 auto;border-top:5px solid #f0ad55}#reviewsSection #reviewsList>.card{margin:15px 0;padding:20px;box-shadow:none;background:#fbf9f4}#reviewsSection #reviewsList span{color:#d48b22;font-weight:900;letter-spacing:2px}
-#reviewForm{margin-top:22px;padding-top:22px;border-top:1px solid var(--line)}#reviewForm button{margin-top:12px}
-#adminSection .section-header-large{position:relative;overflow:hidden;background:#191f33;color:white;border:0}#adminSection .section-header-large:after{content:"OPS";position:absolute;right:34px;bottom:-31px;font-size:115px;font-weight:1000;letter-spacing:-10px;color:rgba(255,255,255,.05)}
-#adminSection .section-header-large .eyebrow{color:var(--accent)}#adminSection .section-header-large p:last-child{color:#cbd0e0;max-width:620px}
-.admin-console-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 20px;padding:17px 21px;border-radius:17px;background:#e1e7ff;border:1px solid #d1d9ff}
-.admin-console-banner strong{display:block;font-size:14px;color:#2b356c}.admin-console-banner p{margin:3px 0 0;font-size:11px;color:#606b9e}.admin-console-banner .section-pill{background:#fff;color:#4e5bd2}
-.admin-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.admin-panel{min-width:0;padding:22px;border-top:4px solid var(--blue)}.admin-panel:first-child{grid-column:1/-1}.admin-panel:nth-child(2){border-top-color:#e6a64f}.admin-panel:nth-child(3){border-top-color:#5d9c76}
-.admin-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.admin-panel-heading h3{display:flex;align-items:center;gap:9px;margin:0;font-size:19px}
-.admin-panel-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:11px;background:#ecefff;color:#4b5ad0}.admin-panel-note{font-size:8px;font-weight:950;letter-spacing:1.3px;color:#868b9a}
-.table-wrap{width:100%;overflow:auto}table{width:100%;border-collapse:separate;border-spacing:0;font-size:12px;text-align:left}th{padding:13px 12px;background:#f2f3f9;color:#636b83;font-size:10px;letter-spacing:.5px;text-transform:uppercase;font-weight:900;white-space:nowrap}
-td{padding:13px 12px;border-bottom:1px solid #eeeef3;color:#454b5e;vertical-align:middle}tr:last-child td{border-bottom:0}td:first-child{font-weight:850;color:#2d3345}td button{padding:7px 10px;font-size:10px}td input,td select{min-width:90px;padding:8px;font-size:11px}
-#buyerOrders table,#sellerOrders table{min-width:640px}#cartList table{min-width:600px}
-footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px,calc((100% - 1320px)/2));background:#191f33;color:#c4c9d7;font-size:11px}footer strong{color:white}footer span:last-child{color:#a7aec0}
-@media(max-width:1100px){.header-note{display:none}.products{grid-template-columns:repeat(3,minmax(0,1fr))}.seller-layout{grid-template-columns:1fr}.seller-editor{order:1}.seller-inventory{order:2}.seller-product-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:800px){.site-header{align-items:flex-start;flex-direction:column;gap:14px;padding:15px 20px}.header-right{width:100%;justify-content:flex-start}.site-header nav{justify-content:flex-start}.container{padding:24px 18px 48px}.hero-storefront{grid-template-columns:1fr;padding:33px 27px}.hero-visual{min-height:260px;margin-top:10px}.hero-storefront:before{right:-210px;top:240px}.section-heading{align-items:flex-start;flex-direction:column}.toolbar{align-items:stretch;flex-direction:column}.search-control{max-width:none;width:100%}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.product-image{height:195px}.cart-workspace{grid-template-columns:1fr}.checkout-aside{min-height:210px}.admin-panels{grid-template-columns:1fr}.admin-panel:first-child{grid-column:auto}.order-hints{grid-template-columns:1fr}.dashboard-intro{align-items:flex-start;padding:30px 26px}.intro-ornament{display:none}.section-header-large{padding:28px 26px}.auth-box{padding:28px}.auth-box:before{margin:-28px -28px 24px;padding:13px 28px}}
-@media(max-width:520px){.brand-copy strong{font-size:16px}.brand-copy small{font-size:8px;letter-spacing:1px}.site-header nav{gap:4px}.site-header nav button{padding:8px 9px;font-size:11px}.container{padding:20px 13px 40px}.hero-storefront{padding:26px 20px;border-radius:22px}.hero-storefront h1{font-size:44px}.hero-visual{min-height:220px}.hero-orbit{width:210px}.hero-orbit-mark{width:88px;height:88px;font-size:42px}.tile-one{right:-4px;top:12px}.tile-two{left:-5px;bottom:10px}.float-tile{padding:9px 10px;font-size:10px}.float-tile span{width:27px;height:27px}.products{grid-template-columns:1fr 1fr;gap:10px}.product{padding:8px 8px 12px;border-radius:16px}.product-image{height:145px;border-radius:11px}.product h3{font-size:14px;margin:10px 3px 6px}.product .small{font-size:11px;min-height:0;margin:0 3px 7px}.product .price{font-size:17px}.product .seller{font-size:10px}.product button{font-size:11px;padding:9px}.card{padding:17px;border-radius:17px}.section-header-large{padding:23px 19px;border-radius:19px}.section-header-large h1{font-size:33px}.dashboard-intro h1{font-size:34px}.row{grid-template-columns:1fr;gap:0}.image-uploader{grid-template-columns:1fr}.image-preview{width:100%;height:180px}.seller-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.seller-product-card img{height:125px}.seller-product-card h3{font-size:14px}.admin-panel{padding:15px}.admin-panel-heading{align-items:flex-start;flex-direction:column}.admin-console-banner{align-items:flex-start;flex-direction:column}.auth-box{margin:16px auto;padding:23px}.auth-box:before{margin:-23px -23px 22px;padding:12px 23px}footer{padding:21px 15px;flex-direction:column}}
+body{margin:0;background:var(--canvas);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit}button{border:1px solid transparent;border-radius:12px;padding:11px 15px;background:var(--violet);color:#fff;cursor:pointer;font-weight:760;letter-spacing:-.015em;transition:background .18s,transform .18s,box-shadow .18s}
+button:hover{background:var(--violet-deep);box-shadow:0 8px 20px rgba(102,84,245,.2);transform:translateY(-1px)}button:active{transform:translateY(0)}button:disabled{opacity:.48;cursor:not-allowed;box-shadow:none;transform:none}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #a79dff;outline-offset:3px}
+a{color:var(--violet-deep);font-weight:750;text-decoration:none}a:hover{text-decoration:underline}.hidden{display:none!important}
+.app-shell{display:grid;grid-template-columns:248px minmax(0,1fr);min-height:100vh}
+.sidebar{position:sticky;top:0;display:flex;flex-direction:column;align-self:start;min-height:100vh;height:100vh;padding:25px 16px 17px;background:var(--navy);color:#fff;overflow-y:auto;z-index:100}
+.brand{display:flex;align-items:center;gap:11px;padding:0 8px 26px;color:#fff;min-width:0}.brand:hover{text-decoration:none}
+.brand-mark{display:grid;place-items:center;width:43px;height:43px;flex:0 0 43px;border-radius:14px;background:var(--lime);color:var(--navy);font-size:21px;font-weight:1000;letter-spacing:-2px;transform:rotate(-5deg)}
+.brand-copy{display:flex;flex-direction:column;min-width:0;gap:4px;line-height:1.18}.brand-copy strong{font-size:16px;letter-spacing:-.55px;white-space:nowrap}.brand-copy small{font-size:8px;color:#a8a6c7;font-weight:850;letter-spacing:1.25px;white-space:nowrap}
+.sidebar-market{display:flex;align-items:center;gap:8px;margin:0 5px 27px;padding:12px;border:1px solid #34314f;border-radius:13px;background:#211f3c;color:#d0cdea;font-size:9px;letter-spacing:1.5px;font-weight:900}
+.sidebar-market-dot{width:7px;height:7px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px rgba(217,255,97,.11)}.sidebar-market-code{margin-left:auto;color:#777395;font-size:9px}
+.sidebar-section-label{padding:0 12px;margin:0 0 9px;color:#777493;font-size:9px;font-weight:950;letter-spacing:1.8px}
+.role-nav{display:flex;flex-direction:column;gap:6px}.role-nav button{display:flex;align-items:center;gap:12px;width:100%;padding:12px 13px;text-align:left;border:1px solid transparent;border-radius:12px;background:transparent;color:#bcbad6;font-size:12px;font-weight:740;box-shadow:none}
+.role-nav button:before{display:inline-grid;place-items:center;width:24px;height:24px;flex:0 0 24px;border-radius:8px;background:#292642;color:#aaa5db;font-size:13px;font-weight:900}
+#guestNav button:nth-child(1):before{content:"↗"}#guestNav button:nth-child(2):before{content:"＋"}#buyerNav button:nth-child(1):before{content:"⌂"}#buyerNav button:nth-child(2):before{content:"▢"}#buyerNav button:nth-child(3):before{content:"↺"}#buyerNav button:nth-child(4):before{content:"⇥"}#sellerNav button:nth-child(1):before{content:"▦"}#sellerNav button:nth-child(2):before{content:"▤"}#sellerNav button:nth-child(3):before{content:"⇥"}#adminNav button:nth-child(1):before{content:"⌘"}#adminNav button:nth-child(2):before{content:"⇥"}
+.role-nav button:hover{background:#292642;color:#fff;box-shadow:none;transform:none}.role-nav button.active{background:var(--lime);color:var(--navy);border-color:var(--lime)}.role-nav button.active:before{background:var(--navy);color:var(--lime)}.role-nav .badge{margin-left:auto;background:var(--navy);color:var(--lime)}
+.sidebar-bottom{margin-top:auto;padding-top:25px}.sidebar-note{position:relative;overflow:hidden;padding:16px 14px;border:1px solid #34314f;border-radius:15px;background:linear-gradient(145deg,#282444,#1e1b35)}
+.sidebar-note:after{content:"✳";position:absolute;right:-8px;bottom:-25px;color:rgba(217,255,97,.12);font-size:82px;line-height:1}.sidebar-note strong{display:block;margin-bottom:4px;color:var(--lime);font-size:10px;letter-spacing:1.1px}.sidebar-note p{position:relative;z-index:1;margin:0;color:#a5a2c4;font-size:10px;line-height:1.7}.sidebar-legal{padding:14px 8px 0;color:#666382;font-size:9px;line-height:1.7}
+.main-column{min-width:0;display:flex;flex-direction:column}.topbar{position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:20px;min-height:88px;padding:16px clamp(20px,3vw,43px);background:rgba(255,255,255,.92);border-bottom:1px solid #e9e8f0;backdrop-filter:blur(16px)}
+.topbar-title{min-width:0}.topbar-eyebrow{display:block;margin-bottom:2px;color:#999bb0;font-size:9px;font-weight:950;letter-spacing:1.7px}.topbar-title h1{margin:0;font-size:22px;line-height:1.2;letter-spacing:-.8px}
+.topbar-actions{display:flex;align-items:center;gap:15px}.market-status{display:flex;align-items:center;gap:7px;color:#6d7288;font-size:10px;font-weight:850;letter-spacing:.7px}.market-status:before{content:"";width:7px;height:7px;border-radius:50%;background:#69bb7d}
+.user-chip{display:flex;align-items:center;gap:9px;padding:7px 11px 7px 7px;border:1px solid #e9e8f2;border-radius:14px;background:#fff}.user-avatar{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:var(--violet);color:#fff;font-weight:950;font-size:12px}
+.user-chip-copy{display:flex;flex-direction:column;line-height:1.25}.user-chip-copy strong{max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#292942;font-size:11px}.user-chip-copy small{color:#999bb0;font-size:8px;font-weight:900;letter-spacing:1px}
+.container{width:100%;max-width:1580px;margin:0 auto;padding:31px clamp(18px,3vw,43px) 60px;min-height:72vh}#message{position:relative;z-index:70}
+.message{max-width:900px;margin:0 0 20px;padding:13px 16px;border:1px solid #ffcfbf;border-radius:13px;background:#fff0e9;color:#8d3827;font-weight:720;box-shadow:0 6px 20px rgba(50,40,64,.04)}
+h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.055em;line-height:1.15}h1{font-size:clamp(34px,4vw,54px);margin-bottom:14px}h2{font-size:clamp(24px,3vw,34px);margin-bottom:12px}h3{font-size:18px;margin-bottom:9px}p{color:var(--muted)}
+.small{font-size:12px;color:var(--muted);line-height:1.6}label{display:block;margin:14px 0 7px;color:#42445e;font-size:11px;font-weight:850;letter-spacing:.015em}
+input,select,textarea{display:block;width:100%;min-width:0;padding:12px 13px;border:1px solid #dedfeb;border-radius:11px;background:#fff;color:var(--ink);outline:none;transition:border .15s,box-shadow .15s}
+input:hover,select:hover,textarea:hover{border-color:#bbb8de}input:focus,select:focus,textarea:focus{border-color:var(--violet);box-shadow:0 0 0 4px rgba(102,84,245,.1)}textarea{min-height:108px;resize:vertical}input[type=file]{padding:8px;background:#fafaff}input[type=number]{font-variant-numeric:tabular-nums}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:24px;box-shadow:0 9px 28px rgba(31,29,69,.035)}
+footer{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:auto;padding:21px clamp(20px,3vw,43px);border-top:1px solid #e5e5ef;background:#fff;color:#9397aa;font-size:10px}footer strong{color:#393653}footer span:last-child{font-weight:650}
+
+/* Split-screen member journeys */
+.auth-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(330px,.8fr);max-width:1050px;min-height:550px;margin:18px auto 25px;border-radius:27px;overflow:hidden;background:#fff;box-shadow:0 23px 65px rgba(32,27,75,.1)}
+.auth-story-panel{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:550px;padding:clamp(28px,4vw,50px);background:var(--navy);color:#fff;isolation:isolate}
+.auth-story-panel:before{content:"";position:absolute;z-index:-1;right:-170px;bottom:-130px;width:430px;height:430px;border:1px solid rgba(217,255,97,.2);border-radius:50%;box-shadow:0 0 0 30px rgba(217,255,97,.03),0 0 0 70px rgba(217,255,97,.025),0 0 0 112px rgba(217,255,97,.02)}
+.auth-story-panel:after{content:"V";position:absolute;z-index:-1;right:20px;bottom:-80px;font-size:clamp(210px,25vw,350px);font-weight:1000;letter-spacing:-.1em;line-height:1;color:rgba(255,255,255,.035);transform:rotate(-12deg)}
+.auth-brand-label{display:flex;align-items:center;gap:10px;color:var(--lime);font-size:10px;letter-spacing:1.6px;font-weight:950}.auth-brand-label span{display:grid;place-items:center;width:29px;height:29px;border-radius:10px;background:var(--lime);color:var(--navy);font-size:13px}
+.auth-story-copy{position:relative;z-index:1;max-width:510px;margin:45px 0}.auth-story-copy .eyebrow{color:var(--lime)}.auth-story-copy h2{margin:14px 0;font-size:clamp(35px,4.2vw,54px);line-height:1;letter-spacing:-.07em;color:white}.auth-story-copy p{max-width:420px;color:#bdbbd5;font-size:13px;line-height:1.85}
+.auth-art-row{display:flex;gap:8px;flex-wrap:wrap}.auth-art-tag{padding:8px 10px;border:1px solid #403d60;border-radius:999px;color:#d2d0e7;font-size:9px;font-weight:850;letter-spacing:.45px}
+.auth-form-panel{align-self:center;width:100%;padding:clamp(25px,4vw,45px);background:#fff}.auth-form-panel h2{margin-bottom:7px;font-size:30px}.auth-form-panel>p.small{margin-bottom:18px}.auth-form-panel>button{width:100%;margin-top:15px}
+.auth-form-panel .password-wrap,.auth-form-panel .password-box{display:flex;align-items:center;gap:7px}.auth-form-panel .password-wrap input,.auth-form-panel .password-box input{flex:1}
+.password-toggle,.show-password{background:#f0efff;color:#5146bb;border:1px solid #e2dfff;white-space:nowrap;box-shadow:none}.password-toggle:hover,.show-password:hover{background:#e1deff;color:#362da0;box-shadow:none}.auth-form-panel .password-toggle,.auth-form-panel .show-password{width:auto;margin:0}.auth-form-panel .small{margin-top:16px}.auth-form-panel a{font-weight:850}
+
+/* Storefront: editorial feature panel and bespoke product gallery */
+.store-masthead{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:25px;align-items:center;min-height:340px;overflow:hidden;padding:clamp(28px,4.5vw,57px);border-radius:27px;background:#e9e6ff}
+.store-masthead:before{content:"";position:absolute;top:-190px;right:5%;width:390px;height:390px;border-radius:50%;background:#d9ff61;opacity:.9}.store-masthead:after{content:"";position:absolute;right:13%;bottom:-190px;width:320px;height:320px;border:1px solid rgba(62,48,150,.18);border-radius:50%;box-shadow:0 0 0 30px rgba(93,76,210,.035),0 0 0 70px rgba(93,76,210,.03)}
+.store-copy,.store-art{position:relative;z-index:1}.store-copy{max-width:630px}.store-kicker{display:inline-block;margin-bottom:17px;color:#6355cf;font-size:9px;letter-spacing:2px;font-weight:1000}
+.store-masthead h1{max-width:650px;margin:0 0 18px;color:#211d46;font-size:clamp(45px,6vw,76px);line-height:.93;letter-spacing:-.085em}.store-masthead h1 em{font-style:normal;color:#6854f4}.store-masthead p{max-width:465px;margin-bottom:24px;color:#6d688d;font-size:13px;line-height:1.85}
+.store-action-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.store-action-row .hero-btn{padding:13px 17px;background:#1d1939;color:#fff}.store-action-row .hero-btn:hover{background:#393268}.store-trust{font-size:10px;font-weight:850;color:#777095}
+.store-art{display:grid;place-items:center;min-height:240px}.store-art-board{position:relative;display:flex;align-items:flex-end;gap:11px;width:min(350px,100%);height:240px;padding:16px;border:1px solid rgba(71,56,167,.16);border-radius:26px;background:rgba(255,255,255,.58);box-shadow:0 22px 40px rgba(64,54,139,.08);transform:rotate(3deg)}
+.store-art-tile{display:flex;flex-direction:column;justify-content:space-between;width:33.333%;height:86%;padding:12px 10px;border-radius:16px;background:#ff795d;color:#3d1f32}.store-art-tile:nth-child(2){height:67%;background:#fff;color:#5147a4}.store-art-tile:nth-child(3){height:78%;background:#1d1939;color:#d9ff61}
+.store-art-symbol{font-size:35px;line-height:1;font-weight:1000}.store-art-label{font-size:9px;line-height:1.35;font-weight:950;letter-spacing:.5px}
+.store-micro-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:16px 0 35px}.store-micro-card{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid #e5e3f1;border-radius:15px;background:#fff}
+.store-micro-icon{display:grid;place-items:center;width:34px;height:34px;flex:0 0 34px;border-radius:11px;background:#efedff;color:#6654f5;font-size:14px;font-weight:950}.store-micro-card strong{display:block;color:#34324c;font-size:11px}.store-micro-card small{display:block;color:#8d90a5;font-size:9px}
+.collection-header{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin:0 0 15px}.collection-header h2{margin:0;color:#1f2036;font-size:clamp(25px,3vw,35px)}.collection-header .eyebrow{color:#9c9bb1}
+.toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:15px;padding:12px 13px;margin:0 0 20px;border:1px solid #e6e5f0;border-radius:17px;background:#fff;box-shadow:0 7px 24px rgba(31,29,69,.025)}
+.search-control{display:flex;align-items:center;gap:10px;min-width:0;margin:0;padding:0 12px;border:1px solid #e7e6f0;border-radius:12px;background:#f8f8fc}.search-control input{border:0;background:transparent;box-shadow:none;padding:10px 0}.search-glyph{color:#786ce4;font-size:24px;line-height:1}
+.chips{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:wrap}.chip{padding:8px 11px;background:transparent;border:1px solid transparent;color:#7d7e94;font-size:10px;box-shadow:none}.chip:hover{background:#efedff;color:#5142d2;box-shadow:none;transform:none}.chip.active{background:#211d43;color:#fff}
+.collection-caption{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 12px;color:#999caf;font-size:9px;font-weight:950;letter-spacing:1.35px}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.product-card{display:flex;flex-direction:column;min-width:0;overflow:hidden;border:1px solid #e6e5ef;border-radius:19px;background:#fff;box-shadow:0 8px 22px rgba(31,29,69,.035);transition:transform .2s,border .2s,box-shadow .2s}.product-card:hover{transform:translateY(-4px);border-color:#c9c2ff;box-shadow:0 18px 37px rgba(31,29,69,.09)}
+.product-media{position:relative;height:210px;overflow:hidden;background:#f0effb}.product-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .35s}.product-card:hover .product-media img{transform:scale(1.04)}
+.product-category{position:absolute;left:11px;top:11px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,.93);color:#5146b9;font-size:9px;font-weight:950;letter-spacing:.5px;backdrop-filter:blur(6px)}
+.product-review-link{position:absolute;right:10px;bottom:10px;padding:7px 9px;border:1px solid rgba(255,255,255,.65);border-radius:9px;background:rgba(28,25,57,.88);color:#fff;font-size:9px;box-shadow:none}.product-review-link:hover{background:#49418a;box-shadow:none}
+.product-info{display:flex;flex-direction:column;flex:1;padding:15px 15px 14px}.product-meta{display:flex;justify-content:space-between;align-items:center;gap:6px;color:#9a9bb0;font-size:8px;font-weight:900;letter-spacing:.5px}.stock-status{white-space:nowrap}.stock-status.in-stock{color:#2e8b5a}.stock-status.out-stock{color:#c43f52}
+.product-card h3{margin:9px 0 7px;font-size:16px;line-height:1.25;letter-spacing:-.035em}.product-description{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:38px;margin:0 0 13px;color:#888ba0;font-size:10px;line-height:1.6}
+.product-seller{margin-top:auto;padding-top:10px;border-top:1px solid #f0eff6;color:#999bb0;font-size:9px}.product-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:9px;margin-top:13px}.product-price-label{display:block;color:#a5a4b8;font-size:8px;font-weight:900;letter-spacing:1px}.product-price{display:block;color:#201d3e;font-size:21px;font-weight:1000;letter-spacing:-.06em}
+.product-purchase{display:flex;align-items:center;gap:6px;min-width:0}.product-qty{width:53px;padding:9px 6px;text-align:center;border-radius:10px;background:#f8f7ff;font-size:11px}.add-to-bag{display:flex;align-items:center;gap:7px;padding:10px 11px;border-radius:10px;background:var(--violet);font-size:10px;white-space:nowrap}.add-to-bag span{font-size:14px}.add-to-bag:hover{background:var(--violet-deep)}
+.product-review-cta{padding:10px 11px;background:#efedff;color:#5142d2;font-size:10px;box-shadow:none}.product-review-cta:hover{background:#dfdbff;box-shadow:none}
+.empty{grid-column:1/-1;padding:36px 22px;border:1px dashed #c7c4e2;border-radius:17px;background:#fff;text-align:center;color:#80839b;font-weight:750}
+
+/* Buyer workspace */
+.page-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:23px;padding:31px 34px;border-radius:23px;background:#fff;border:1px solid #e9e8f1}.page-intro-copy{max-width:730px}.page-intro h1{margin:6px 0 10px;font-size:clamp(32px,4vw,46px)}.page-intro p:last-child{margin:0}
+#cartSection .page-intro{border:0;background:#1d1939;color:#fff}#cartSection .page-intro .eyebrow{color:var(--lime)}#cartSection .page-intro p:last-child{color:#c4c0e1}
+.cart-workspace{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.7fr);align-items:start;gap:18px}.cart-card{min-width:0;padding:21px;border:1px solid #e8e7f1;border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+.cart-items-stack{display:flex;flex-direction:column;gap:0}.cart-item{display:grid;grid-template-columns:70px minmax(0,1.4fr) 80px 100px auto;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid #eeeef5}.cart-item:last-child{border-bottom:0}
+.cart-item-art{display:grid;place-items:center;width:70px;height:70px;overflow:hidden;border-radius:15px;background:#efedff;color:#6654f5;font-size:24px;font-weight:1000}.cart-item-art img{width:100%;height:100%;object-fit:cover}
+.cart-item-copy{min-width:0}.cart-item-copy small,.cart-item-total small{display:block;color:#9b9cb0;font-size:8px;font-weight:950;letter-spacing:1px}.cart-item-copy h3{margin:5px 0 3px;font-size:14px;overflow-wrap:anywhere}.cart-item-copy p{margin:0;color:#87899e;font-size:10px}
+.cart-quantity{margin:0;color:#8d8ea3;font-size:9px}.cart-quantity input{margin-top:5px;padding:8px;text-align:center}.cart-item-total strong{display:block;margin-top:5px;color:#24213f;font-size:16px;font-weight:950;letter-spacing:-.04em}.cart-item-actions{display:flex;flex-direction:column;gap:5px}.cart-item-actions button{padding:7px 9px;font-size:9px}
+.button-quiet{background:#efedff;color:#5145c2;box-shadow:none}.button-quiet:hover{background:#e0dcff;box-shadow:none}.button-danger{background:#fff0f1;color:#b93247;border:1px solid #ffdde0;box-shadow:none}.button-danger:hover{background:#ffdee2;box-shadow:none}
+#cartTotal{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:21px 0 9px;padding-top:18px;border-top:1px solid #ecebf3;color:#201d3e;font-size:25px;font-weight:1000;letter-spacing:-.06em}.cart-card>button{width:100%;margin-top:10px;padding:14px 16px}
+.checkout-aside{position:sticky;top:110px;overflow:hidden;padding:26px;border-radius:20px;background:#e0ff92;border:1px solid #d2f37e}.checkout-aside:after{content:"↗";position:absolute;right:-14px;bottom:-52px;font-size:160px;line-height:1;color:rgba(23,21,44,.09);font-weight:1000}
+.aside-label{display:inline-block;margin-bottom:15px;font-size:9px;letter-spacing:1.5px;font-weight:1000;color:#555f2b}.checkout-aside h2{max-width:250px;margin-bottom:12px;color:#202333;font-size:31px;letter-spacing:-.07em}.checkout-aside p,.checkout-aside li{font-size:11px;color:#4f5935}.checkout-aside ul{padding-left:18px;margin:17px 0 0}.checkout-aside li{padding:4px 0}
+.order-hints{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:-4px 0 20px}.order-hint{display:flex;align-items:center;gap:12px;padding:15px 16px;border:1px solid #e3e2ef;border-radius:16px;background:#fff}
+.order-hint span{display:grid;place-items:center;width:37px;height:37px;flex:0 0 37px;border-radius:12px;background:#efedff;color:#5d4bea;font-size:11px;font-weight:1000}.order-hint strong{display:block;color:#3a3755;font-size:11px}.order-hint small{display:block;color:#9496a9;font-size:9px}
+#buyerOrders{padding:0;border:0;background:transparent;box-shadow:none}.buyer-order-list{display:flex;flex-direction:column;gap:11px}.buyer-order-card{display:grid;grid-template-columns:54px minmax(0,1fr) auto 130px;align-items:center;gap:15px;padding:19px;border:1px solid #e6e5f0;border-radius:17px;background:#fff;box-shadow:0 7px 23px rgba(31,29,69,.03)}
+.order-mark{display:grid;place-items:center;width:54px;height:54px;border-radius:16px;background:#edfff0;color:#337b53;font-size:17px;font-weight:1000}.order-main{min-width:0}.order-main small,.order-total small{display:block;color:#9d9caf;font-size:8px;font-weight:950;letter-spacing:1.2px}.order-main h3{margin:5px 0 4px;font-size:15px}.order-main p{margin:0;color:#9294a8;font-size:10px}.status-pill{display:inline-flex;align-items:center;gap:6px;padding:7px 9px;border-radius:9px;background:#efedff;color:#5a4ad5;font-size:9px;font-weight:950;letter-spacing:.4px;white-space:nowrap}.status-pill:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.status-processing{background:#fff5df;color:#ab7118}.status-shipped{background:#e8f2ff;color:#2c69af}.status-delivered{background:#e6f8eb;color:#2e8254}.status-cancelled{background:#fff0f1;color:#b93247}.order-total{text-align:right}.order-total strong{display:block;margin-top:4px;color:#211e40;font-size:20px;font-weight:1000;letter-spacing:-.06em}
+
+/* Seller inventory-first workbench */
+.seller-page-head{position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:space-between;gap:22px;margin-bottom:18px;padding:32px 35px;border-radius:25px;background:#1d1939;color:#fff}
+.seller-page-head:after{content:"";position:absolute;right:8%;top:-180px;width:360px;height:360px;border:1px solid rgba(217,255,97,.24);border-radius:50%;box-shadow:0 0 0 34px rgba(217,255,97,.035),0 0 0 74px rgba(217,255,97,.025)}
+.seller-page-head>div{position:relative;z-index:1}.seller-page-head .eyebrow{color:var(--lime)}.seller-page-head h1{margin:9px 0 11px;color:white;font-size:clamp(34px,4vw,48px)}.seller-page-head p:not(.eyebrow){max-width:620px;margin:0;color:#c8c5e2;font-size:12px}
+.seller-page-code{position:relative;z-index:1;display:flex;flex-direction:column;gap:4px;min-width:120px;padding:15px;border:1px solid #3a365c;border-radius:15px;background:#282444}.seller-page-code span{color:#8d8ab1;font-size:8px;font-weight:950;letter-spacing:1.4px}.seller-page-code strong{color:var(--lime);font-size:17px;letter-spacing:-.5px}
+.seller-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-bottom:19px}.seller-kpi{display:flex;align-items:center;gap:12px;padding:15px;border:1px solid #e4e3f0;border-radius:15px;background:#fff}
+.seller-kpi-icon{display:grid;place-items:center;width:36px;height:36px;flex:0 0 36px;border-radius:12px;background:#f0edff;color:#6654f5;font-size:15px;font-weight:950}.seller-kpi strong{display:block;color:#3c3956;font-size:11px}.seller-kpi small{display:block;color:#999bae;font-size:9px}
+.seller-layout{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(310px,.78fr);align-items:start;gap:18px}.seller-inventory{grid-column:1;grid-row:1;min-width:0;padding:21px;border:1px solid #e3e2f0;border-radius:20px;background:#eeedfb}
+.seller-editor{grid-column:2;grid-row:1;min-width:0;padding:23px;border:1px solid #e4e1ff;border-top:4px solid var(--violet);border-radius:20px;background:#fff;box-shadow:var(--shadow)}
+.seller-form-title{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:18px}.seller-form-title h2{margin:0;font-size:25px}.seller-form-title .small{max-width:140px;text-align:right;font-size:10px}
+.seller-form-step{display:flex;align-items:center;gap:9px;margin-bottom:14px;color:#aaa7c0;font-size:8px;font-weight:950;letter-spacing:1.2px}.seller-form-step:before{content:"+";display:grid;place-items:center;width:24px;height:24px;border-radius:8px;background:#e6e2ff;color:#5a4be0;font-size:15px}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.row>div{min-width:0}.image-uploader{display:grid;grid-template-columns:108px minmax(0,1fr);align-items:start;gap:12px;margin:10px 0 15px;padding:12px;border:1px dashed #cbc6f5;border-radius:15px;background:#f8f7ff}
+.image-preview{width:108px;height:117px;object-fit:cover;border-radius:11px;background:#e8e5fb}.image-tools{min-width:0}.image-tools input{margin-bottom:7px}.image-help{display:block;margin:0 0 7px;color:#9a98ae;font-size:9px;line-height:1.5}
+#productSaveButton{width:100%;margin-top:7px}#cancelEditButton{width:100%;margin-top:7px}
+.section-heading.compact{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 16px}.section-heading.compact h2{margin:0;color:#292548;font-size:25px}.section-pill{padding:7px 9px;border-radius:8px;background:#dedaff;color:#5a4cdb;font-size:8px;font-weight:1000;letter-spacing:1px}
+.seller-product-grid{display:flex;flex-direction:column;gap:9px}.seller-product-card{display:grid;grid-template-columns:84px minmax(0,1fr) auto;align-items:center;gap:13px;min-width:0;padding:11px;border:1px solid #e2e1f0;border-radius:15px;background:#fff}
+.seller-product-card img{width:84px;height:84px;object-fit:cover;border-radius:11px;background:#f1f0fa}.seller-product-details{min-width:0}.seller-product-card h3{margin:0 0 5px;font-size:14px;overflow-wrap:anywhere}.seller-product-card .small{margin:0;color:#9899ac;font-size:9px}.seller-product-card .price{margin:6px 0 0;color:#24213f;font-size:16px}
+.seller-product-actions{display:flex;align-items:flex-end;flex-direction:column;gap:6px}.seller-product-actions .actions{display:flex;flex-direction:column;gap:5px}.seller-product-actions button{padding:7px 9px;font-size:9px}
+.danger-button{background:#fff0f1;color:#b93247;border:1px solid #ffdde0;box-shadow:none}.danger-button:hover{background:#ffdee2;box-shadow:none}
+.seller-orders-hero{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:19px;padding:29px 32px;border-radius:23px;background:#e4eaff;border:1px solid #d8dfff}.seller-orders-hero .eyebrow{color:#5a5dd4}.seller-orders-hero h1{margin:5px 0 8px;font-size:clamp(30px,4vw,42px)}.seller-orders-hero p{margin:0;font-size:11px}
+.order-legend{display:flex;gap:6px;flex-wrap:wrap}.order-legend span{padding:7px 9px;border:1px solid #d1d8ff;border-radius:8px;background:rgba(255,255,255,.65);color:#5860b9;font-size:8px;font-weight:950;letter-spacing:.6px}
+#sellerOrders{display:flex;flex-direction:column;gap:11px}.seller-order-card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:17px;padding:18px;border:1px solid #e4e5f1;border-radius:17px;background:#fff;box-shadow:0 7px 23px rgba(31,29,69,.03)}
+.seller-order-main{min-width:0}.seller-order-id{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:7px}.seller-order-id strong{font-size:14px}.seller-order-meta{display:flex;gap:14px;flex-wrap:wrap;color:#888ba0;font-size:10px}.seller-order-product{margin-top:12px;padding:11px 13px;border-radius:11px;background:#f8f8fd;color:#636680;font-size:11px}.seller-order-product strong{color:#34324c}
+.seller-order-controls{display:flex;flex-direction:column;justify-content:center;gap:7px;min-width:160px}.seller-order-controls label{margin:0;color:#9698ac;font-size:8px;letter-spacing:1px}.seller-order-controls select{padding:9px;font-size:10px}.seller-order-controls button{padding:9px;font-size:10px}
+#reviewsSection>.card{max-width:1000px;margin:0 auto;padding:30px;border-top:4px solid #efb24f}#reviewsSection #reviewsList>.card{margin:13px 0;padding:18px;box-shadow:none;background:#fcfbff}#reviewsSection #reviewsList span{color:#d58b26;font-weight:950;letter-spacing:2px}#reviewForm{margin-top:22px;padding-top:21px;border-top:1px solid var(--line)}#reviewForm button{margin-top:12px}
+
+/* Admin command centre */
+.admin-console-head{position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:space-between;gap:25px;margin-bottom:17px;padding:34px;border-radius:24px;background:linear-gradient(115deg,#19162f 0%,#28224f 65%,#5448ca 100%);color:#fff}
+.admin-console-head:after{content:"OPS";position:absolute;right:22px;bottom:-39px;color:rgba(255,255,255,.055);font-size:145px;line-height:1;font-weight:1000;letter-spacing:-.12em}.admin-console-head>div{position:relative;z-index:1}.admin-console-head .eyebrow{color:var(--lime)}.admin-console-head h1{margin:7px 0 10px;color:#fff;font-size:clamp(34px,4vw,48px)}.admin-console-head p:not(.eyebrow){max-width:560px;margin:0;color:#c8c5df;font-size:12px}
+.admin-status-tag{position:relative;z-index:1;padding:9px 11px;border:1px solid #554d84;border-radius:10px;background:rgba(255,255,255,.06);color:#d9ff61;font-size:8px;font-weight:950;letter-spacing:1.2px;white-space:nowrap}
+.admin-console-banner{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 0 18px;padding:16px 19px;border:1px solid #e3e1fa;border-radius:15px;background:#f0efff}.admin-console-banner strong{display:block;color:#39326f;font-size:12px}.admin-console-banner p{margin:3px 0 0;color:#8582ab;font-size:10px}
+.admin-panels{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.admin-panel{min-width:0;padding:20px;border:1px solid #e6e5f1;border-radius:18px;background:#fff;box-shadow:0 8px 25px rgba(31,29,69,.035)}.admin-panel:first-child{grid-column:1/-1}.admin-panel:nth-child(2){border-top:3px solid #e5a94d}.admin-panel:nth-child(3){border-top:3px solid #68aa82}
+.admin-panel-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:15px}.admin-panel-heading h3{display:flex;align-items:center;gap:9px;margin:0;font-size:17px;letter-spacing:-.04em}.admin-panel-icon{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:#efedff;color:#5b4bde;font-size:15px}.admin-panel-note{font-size:8px;font-weight:950;letter-spacing:1.2px;color:#a0a1b4}
+.table-wrap{width:100%;overflow:auto;border:1px solid #ededf4;border-radius:12px}table{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;text-align:left;white-space:nowrap}th{padding:12px;background:#f6f6fc;color:#83849c;font-size:8px;letter-spacing:.8px;text-transform:uppercase;font-weight:1000}td{padding:12px;border-top:1px solid #eeeef5;color:#65677e;vertical-align:middle}td:first-child{color:#302e4c;font-weight:900}td button{padding:7px 9px;font-size:9px}td input,td select{min-width:82px;padding:7px;font-size:10px}
+@media(max-width:1200px){.app-shell{grid-template-columns:220px minmax(0,1fr)}.products{grid-template-columns:repeat(3,minmax(0,1fr))}.seller-layout{grid-template-columns:minmax(0,1fr) minmax(280px,.8fr)}.seller-product-card{grid-template-columns:70px minmax(0,1fr)}.seller-product-card img{width:70px;height:70px}.seller-product-actions{grid-column:2;align-items:flex-start}.seller-product-actions .actions{flex-direction:row}}
+@media(max-width:920px){.app-shell{grid-template-columns:1fr}.sidebar{position:relative;height:auto;min-height:0;padding:14px 16px}.brand{padding:0 5px 12px}.sidebar-market,.sidebar-section-label,.sidebar-bottom,.sidebar-legal{display:none}.role-nav{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:1px}.role-nav button{width:auto;min-width:max-content;padding:8px 10px}.role-nav button:before{width:22px;height:22px;flex-basis:22px}.topbar{top:0;min-height:72px;padding:13px 20px}.container{padding:23px 20px 42px}.auth-layout{min-height:0}.auth-story-panel{min-height:490px}.store-masthead{grid-template-columns:minmax(0,1.1fr) minmax(220px,.9fr)}.seller-layout{grid-template-columns:1fr}.seller-inventory,.seller-editor{grid-column:1;grid-row:auto}.seller-product-card{grid-template-columns:84px minmax(0,1fr) auto}.seller-product-card img{width:84px;height:84px}.seller-product-actions{grid-column:auto;align-items:flex-end}.seller-product-actions .actions{flex-direction:column}}
+@media(max-width:680px){.topbar{align-items:flex-start;gap:8px}.topbar-actions{gap:8px}.market-status{display:none}.user-chip{padding:5px}.user-chip-copy{display:none}.user-avatar{width:31px;height:31px}.topbar-title h1{font-size:18px}.container{padding:17px 13px 33px}
+.auth-layout{grid-template-columns:1fr;margin:0 auto 20px;border-radius:21px}.auth-story-panel{min-height:235px;padding:24px;background:var(--navy)}.auth-story-copy{margin:28px 0 16px}.auth-story-copy h2{font-size:36px}.auth-story-copy p{font-size:11px}.auth-story-panel:after{font-size:180px;right:10px;bottom:-55px}.auth-form-panel{padding:25px 23px}
+.store-masthead{grid-template-columns:1fr;gap:8px;padding:28px 23px;border-radius:22px}.store-masthead h1{font-size:50px}.store-art{min-height:210px}.store-art-board{height:195px;width:min(340px,95%)}.store-micro-row{grid-template-columns:1fr;margin-bottom:27px}.store-micro-card{padding:11px 13px}.collection-header{align-items:flex-start;flex-direction:column;gap:5px}.toolbar{grid-template-columns:1fr}.chips{justify-content:flex-start}.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-media{height:155px}.product-info{padding:11px}.product-card h3{font-size:14px}.product-price{font-size:18px}.product-bottom{align-items:flex-start;flex-direction:column}.product-purchase{width:100%}.product-qty{width:52px}.add-to-bag{flex:1;justify-content:center}
+.page-intro,.seller-page-head,.seller-orders-hero,.admin-console-head{align-items:flex-start;flex-direction:column;padding:25px 22px}.page-intro h1,.seller-page-head h1,.admin-console-head h1{font-size:34px}.seller-page-code{min-width:0}.seller-kpis{grid-template-columns:1fr}.seller-kpi{padding:12px}.order-hints{grid-template-columns:1fr}.cart-workspace{grid-template-columns:1fr}.checkout-aside{position:relative;top:auto}
+.cart-item{grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:start}.cart-item-art{width:54px;height:58px}.cart-quantity{grid-column:2}.cart-item-total{grid-column:3;grid-row:2;text-align:right}.cart-item-actions{grid-column:1/-1;flex-direction:row;justify-content:flex-end}.buyer-order-card{grid-template-columns:43px minmax(0,1fr) auto;gap:11px;padding:14px}.order-mark{width:43px;height:43px;border-radius:13px}.buyer-order-card .order-state{grid-column:2}.order-total{grid-column:3;grid-row:1/3}.order-total strong{font-size:17px}
+.admin-panels{grid-template-columns:1fr}.admin-panel:first-child{grid-column:auto}.admin-status-tag{white-space:normal}.seller-order-card{grid-template-columns:1fr}.seller-order-controls{min-width:0}.seller-order-controls button{width:100%}.row{grid-template-columns:1fr;gap:0}.image-uploader{grid-template-columns:1fr}.image-preview{width:100%;height:180px}.seller-product-card{grid-template-columns:64px minmax(0,1fr)}.seller-product-card img{width:64px;height:64px}.seller-product-actions{grid-column:1/-1;align-items:flex-start}.seller-product-actions .actions{flex-direction:row}.seller-form-title{flex-direction:column}.seller-form-title .small{text-align:left;max-width:none}
+footer{padding:18px 14px;flex-direction:column;align-items:flex-start}
+}
+@media(max-width:390px){.products{grid-template-columns:1fr}.product-media{height:210px}.product-bottom{flex-direction:row;align-items:flex-end}.product-card h3{font-size:16px}.seller-product-card{grid-template-columns:54px minmax(0,1fr)}.seller-product-card img{width:54px;height:54px}.buyer-order-card{grid-template-columns:38px minmax(0,1fr)}.order-mark{width:38px;height:38px}.order-total{grid-column:2;grid-row:auto;text-align:left}.buyer-order-card .order-state{grid-column:2}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
 
 </style>
@@ -115,41 +156,53 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
 </head>
 <body>
 
-<header class="site-header">
-  <a class="brand" href="#" onclick="showProducts();return false" aria-label="VishnuRajMart home">
-    <span class="brand-mark" aria-hidden="true">V.</span>
-    <span class="brand-copy"><strong>VishnuRajMart</strong><small>MARKETPLACE / MADE EASY</small></span>
-  </a>
-  <div class="header-right">
-    <div class="header-note"><span class="live-dot" aria-hidden="true"></span> A better way to discover</div>
-    <nav id="guestNav" aria-label="Guest navigation">
-      <button onclick="showLogin()">Login</button>
-      <button onclick="showRegister()">Create account ↗</button>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="brand" href="#" onclick="showProducts();return false" aria-label="VishnuRajMart home">
+      <span class="brand-mark" aria-hidden="true">V.</span>
+      <span class="brand-copy"><strong>VishnuRajMart</strong><small>GOOD THINGS, FOUND.</small></span>
+    </a>
+    <div class="sidebar-market"><span class="sidebar-market-dot"></span><span>MARKETPLACE</span><span class="sidebar-market-code">VR / 01</span></div>
+    <div class="sidebar-section-label">YOUR SPACE</div>
+    <nav id="guestNav" class="role-nav" aria-label="Guest navigation">
+      <button type="button" data-section="loginSection" onclick="showLogin()">Sign in</button>
+      <button type="button" data-section="registerSection" onclick="showRegister()">Create account</button>
     </nav>
-    <nav id="buyerNav" class="hidden" aria-label="Buyer navigation">
-      <button onclick="showProducts()">Discover</button>
-      <button onclick="showCart()">Cart <span id="cartCount" class="badge">0</span></button>
-      <button onclick="showBuyerOrders()">My orders</button>
-      <button onclick="logout()">Logout ↗</button>
+    <nav id="buyerNav" class="role-nav hidden" aria-label="Buyer navigation">
+      <button type="button" data-section="productsSection" onclick="showProducts()">Discover</button>
+      <button type="button" data-section="cartSection" onclick="showCart()">Shopping bag <span id="cartCount" class="badge">0</span></button>
+      <button type="button" data-section="buyerOrdersSection" onclick="showBuyerOrders()">Order history</button>
+      <button type="button" onclick="logout()">Sign out</button>
     </nav>
-    <nav id="sellerNav" class="hidden" aria-label="Seller navigation">
-      <button onclick="showSellerDashboard()">Seller studio</button>
-      <button onclick="showSellerOrders()">Orders</button>
-      <button onclick="logout()">Logout ↗</button>
+    <nav id="sellerNav" class="role-nav hidden" aria-label="Seller navigation">
+      <button type="button" data-section="sellerSection" onclick="showSellerDashboard()">My workspace</button>
+      <button type="button" data-section="sellerOrdersSection" onclick="showSellerOrders()">Order desk</button>
+      <button type="button" onclick="logout()">Sign out</button>
     </nav>
-    <nav id="adminNav" class="hidden" aria-label="Admin navigation">
-      <button onclick="showAdminDashboard()">Control center</button>
-      <button onclick="logout()">Logout ↗</button>
+    <nav id="adminNav" class="role-nav hidden" aria-label="Admin navigation">
+      <button type="button" data-section="adminSection" onclick="showAdminDashboard()">Operations</button>
+      <button type="button" onclick="logout()">Sign out</button>
     </nav>
-  </div>
-</header>
-
-<div class="container">
+    <div class="sidebar-bottom">
+      <div class="sidebar-note"><strong>GOOD FINDS, LESS FUSS.</strong><p>Discover independent sellers, keep your marketplace activity organised, and manage your store from one place.</p></div>
+      <div class="sidebar-legal">VISHNURAJMART<br>Marketplace workspace · 2026</div>
+    </div>
+  </aside>
+  <div class="main-column">
+    <header class="topbar">
+      <div class="topbar-title"><span class="topbar-eyebrow">VISHNURAJMART / WORKSPACE</span><h1 id="pageTitle">Welcome to your marketplace</h1></div>
+      <div class="topbar-actions">
+        <span class="market-status">MARKETPLACE ONLINE</span>
+        <div class="user-chip"><span class="user-avatar" id="userAvatar">V</span><span class="user-chip-copy"><strong id="userDisplay">Guest visitor</strong><small id="userRoleTag">VISITOR</small></span></div>
+      </div>
+    </header>
+    <main class="container">
 
     <div id="message"></div>
 
     <!-- LOGIN -->
-    <section id="loginSection" class="card auth-box">
+    <section id="loginSection" class="auth-layout auth-box">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / MEMBER SPACE</div><div class="auth-story-copy"><p class="eyebrow">MEMBER SPACE</p><h2>Good finds are just a sign-in away.</h2><p>Return to your marketplace, pick up where you left off, and keep your purchases and account details together.</p></div><div class="auth-art-row"><span class="auth-art-tag">YOUR MARKETPLACE</span><span class="auth-art-tag">YOUR ORDERS</span><span class="auth-art-tag">YOUR SPACE</span></div></div><div class="auth-form-panel">
         <h2>Login</h2>
 
         <label>Email</label>
@@ -168,11 +221,13 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
             Don't have an account?
             <a href="#" onclick="showRegister()">Register</a>
         </p>
-    </section>
+    </div>
+</section>
 
 
     <!-- FORGOT PASSWORD -->
-    <section id="forgotSection" class="card auth-box hidden">
+    <section id="forgotSection" class="auth-layout auth-box hidden">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / ACCOUNT RECOVERY</div><div class="auth-story-copy"><p class="eyebrow">ACCOUNT RECOVERY</p><h2>We’ll help you get back in.</h2><p>Use your registered email to request a reset code and recover access to your account.</p></div><div class="auth-art-row"><span class="auth-art-tag">PASSWORD RESET</span><span class="auth-art-tag">EMAIL OTP</span></div></div><div class="auth-form-panel">
         <h2>Forgot Password</h2>
         <p class="small">Enter your registered email to receive a reset OTP.</p>
 
@@ -184,10 +239,12 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
         <p class="small">
             <a href="#" onclick="showLogin()">Back to Login</a>
         </p>
-    </section>
+    </div>
+</section>
 
     <!-- RESET OTP -->
-    <section id="resetOtpSection" class="card auth-box hidden">
+    <section id="resetOtpSection" class="auth-layout auth-box hidden">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / SECURITY CHECK</div><div class="auth-story-copy"><p class="eyebrow">SECURITY CHECK</p><h2>Verify it’s really you.</h2><p>Enter the reset code sent to your email before choosing a new password.</p></div><div class="auth-art-row"><span class="auth-art-tag">RESET CODE</span><span class="auth-art-tag">SECURE ACCESS</span></div></div><div class="auth-form-panel">
         <h2>Verify Reset OTP</h2>
 
         <label>Email</label>
@@ -202,10 +259,12 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
 
         <button onclick="verifyResetOtp()">Verify OTP</button>
         <button onclick="sendResetOtp(true)">Resend OTP</button>
-    </section>
+    </div>
+</section>
 
     <!-- NEW PASSWORD -->
-    <section id="resetPasswordSection" class="card auth-box hidden">
+    <section id="resetPasswordSection" class="auth-layout auth-box hidden">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / ALMOST THERE</div><div class="auth-story-copy"><p class="eyebrow">ALMOST THERE</p><h2>Set a fresh password.</h2><p>Choose a new password for your account. Keep it private and use one that is hard to guess.</p></div><div class="auth-art-row"><span class="auth-art-tag">NEW PASSWORD</span><span class="auth-art-tag">ACCOUNT SAFETY</span></div></div><div class="auth-form-panel">
         <h2>Set New Password</h2>
 
         <label>New Password</label>
@@ -221,10 +280,12 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
         </div>
 
         <button onclick="resetPassword()">Change Password</button>
-    </section>
+    </div>
+</section>
 
     <!-- REGISTER -->
-    <section id="registerSection" class="card auth-box hidden">
+    <section id="registerSection" class="auth-layout auth-box hidden">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / A NEW START</div><div class="auth-story-copy"><p class="eyebrow">A NEW START</p><h2>Make room for something good.</h2><p>Create your VishnuRajMart account to discover products as a buyer or start building your own catalogue as a seller.</p></div><div class="auth-art-row"><span class="auth-art-tag">BUYER OR SELLER</span><span class="auth-art-tag">SIMPLE ACCOUNT SETUP</span><span class="auth-art-tag">NEW DISCOVERIES</span></div></div><div class="auth-form-panel">
         <h2>Register</h2>
 
         <label>Name</label>
@@ -254,11 +315,13 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
             Already registered?
             <a href="#" onclick="showLogin()">Login</a>
         </p>
-    </section>
+    </div>
+</section>
 
 
     <!-- OTP VERIFICATION -->
-    <section id="otpSection" class="card auth-box hidden">
+    <section id="otpSection" class="auth-layout auth-box hidden">
+<div class="auth-story-panel"><div class="auth-brand-label"><span>V.</span> VISHNURAJMART / ACCOUNT SECURITY</div><div class="auth-story-copy"><p class="eyebrow">ACCOUNT SECURITY</p><h2>One quick step to get you in.</h2><p>Verify the email address you registered with so your account can be activated securely.</p></div><div class="auth-art-row"><span class="auth-art-tag">EMAIL VERIFICATION</span><span class="auth-art-tag">ACCOUNT ACTIVATION</span></div></div><div class="auth-form-panel">
         <h2>Verify OTP</h2>
         <p class="small">
             A 6-digit OTP was sent to your email. Enter it below to activate your account.
@@ -281,49 +344,46 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
             Already verified?
             <a href="#" onclick="showLogin()">Login</a>
         </p>
-    </section>
+    </div>
+</section>
 
     <!-- PRODUCTS -->
     <section id="productsSection" class="hidden">
-  <div class="page-kicker"><span>MARKETPLACE&nbsp; / &nbsp;DISCOVER</span><span class="catalog-note">New discoveries. Independent sellers. One simple place.</span></div>
-  <div class="hero hero-storefront">
-    <div class="hero-content">
-      <span class="hero-tag">A MARKETPLACE FOR EVERY DAY</span>
-      <h1>A little better.<br><em>Every day.</em></h1>
-      <p>Discover good products from independent sellers, find your next favourite and keep your purchases organised in one place.</p>
-      <div class="hero-actions">
-        <button class="hero-btn" onclick="document.getElementById('productSearch').focus()">Browse the collection &nbsp; ↘</button>
-        <span class="trust-note">✳ Seller-listed &nbsp; · &nbsp; Simple checkout</span>
-      </div>
+  <div class="store-masthead">
+    <div class="store-copy">
+      <span class="store-kicker">THE GOOD FINDS EDIT / VOL. 01</span>
+      <h1>Your next<br><em>favourite</em> lives here.</h1>
+      <p>Explore useful finds from independent sellers, browse the collection at your own pace, and keep your shopping in one thoughtfully organised place.</p>
+      <div class="store-action-row"><button class="hero-btn" onclick="document.getElementById('productSearch').focus()">Explore the collection <span aria-hidden="true">↘</span></button><span class="store-trust">INDEPENDENT SHOPS · EVERYDAY DISCOVERIES</span></div>
     </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-orbit">
-        <div class="hero-orbit-mark">V.</div>
-        <div class="hero-orbit-caption">DISCOVER SOMETHING NEW</div>
-      </div>
-      <div class="float-tile tile-one"><span>✳</span><div>Find your<br>next favourite</div></div>
-      <div class="float-tile tile-two"><span>↗</span><div>Small shops.<br>Good discoveries.</div></div>
-    </div>
+    <div class="store-art" aria-hidden="true"><div class="store-art-board">
+      <div class="store-art-tile"><span class="store-art-symbol">✳</span><span class="store-art-label">DAILY<br>FAVOURITES</span></div>
+      <div class="store-art-tile"><span class="store-art-symbol">◈</span><span class="store-art-label">NEW<br>FINDS</span></div>
+      <div class="store-art-tile"><span class="store-art-symbol">↗</span><span class="store-art-label">SMALL<br>SHOPS</span></div>
+    </div></div>
   </div>
-  <div class="section-heading">
-    <div><p class="eyebrow">THE COLLECTION</p><h2>Find something you love</h2></div>
-    <p class="small">Search by product, category or seller, or browse a collection below.</p>
+  <div class="store-micro-row">
+    <div class="store-micro-card"><span class="store-micro-icon">✳</span><div><strong>Discover something different</strong><small>Browse a range of seller-listed products</small></div></div>
+    <div class="store-micro-card"><span class="store-micro-icon">⌕</span><div><strong>Find it your way</strong><small>Search by product, category or seller</small></div></div>
+    <div class="store-micro-card"><span class="store-micro-icon">▢</span><div><strong>Everything in one place</strong><small>Keep your basket and orders organised</small></div></div>
   </div>
+  <div class="collection-header"><div><p class="eyebrow">THE COLLECTION / 001</p><h2>Browse the latest finds</h2></div><p class="small">Choose a category or search the collection.</p></div>
   <div class="toolbar">
-    <label class="search-control" for="productSearch"><span class="search-glyph" aria-hidden="true">⌕</span><input id="productSearch" placeholder="Search products, category or seller..." oninput="filterProducts()" autocomplete="off"></label>
+    <label class="search-control" for="productSearch"><span class="search-glyph" aria-hidden="true">⌕</span><input id="productSearch" placeholder="Search products, categories or sellers…" oninput="filterProducts()" autocomplete="off"></label>
     <div class="chips" aria-label="Filter products by category">
-      <button class="chip active" onclick="setCategory('ALL',this)">All finds</button>
+      <button class="chip active" onclick="setCategory('ALL',this)">Everything</button>
       <button class="chip" onclick="setCategory('Electronics',this)">Electronics</button>
       <button class="chip" onclick="setCategory('Accessories',this)">Accessories</button>
-      <button class="chip" onclick="setCategory('Other',this)">Other</button>
+      <button class="chip" onclick="setCategory('Other',this)">Other finds</button>
     </div>
   </div>
+  <div class="collection-caption"><span>CURATED BY OUR SELLERS</span><span>SCROLL TO DISCOVER ↓</span></div>
   <div id="productsList" class="products"></div>
 </section>
 
     <!-- CART -->
     <section id="cartSection" class="hidden">
-  <div class="section-header-large">
+  <div class="page-intro">
     <p class="eyebrow">YOUR SHOPPING BAG</p><h1>Cart & checkout</h1><p>Review your picks before placing your order.</p>
   </div>
   <div class="cart-workspace">
@@ -347,7 +407,7 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
 
     <!-- BUYER ORDERS -->
     <section id="buyerOrdersSection" class="hidden">
-  <div class="section-header-large"><p class="eyebrow">BUYER SPACE / PURCHASE HISTORY</p><h1>Your orders, in one place.</h1><p>Review past purchases and check the latest status available for each order.</p></div>
+  <div class="page-intro"><p class="eyebrow">BUYER SPACE / PURCHASE HISTORY</p><h1>Your orders, in one place.</h1><p>Review past purchases and check the latest status available for each order.</p></div>
   <div class="order-hints">
     <div class="order-hint"><span>01</span><div><strong>Purchase history</strong><small>Orders you've placed</small></div></div>
     <div class="order-hint"><span>02</span><div><strong>Status overview</strong><small>Current order progress</small></div></div>
@@ -358,57 +418,37 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
 
     <!-- SELLER DASHBOARD -->
     <section id="sellerSection" class="hidden">
-  <div class="dashboard-intro seller-intro">
-    <div>
-      <p class="eyebrow light">SELLER STUDIO</p>
-      <h1>Your shop. Your workflow.</h1>
-      <p>Build your catalogue, update inventory and manage every listing from a focused seller workspace.</p>
-    </div>
-    <div class="intro-ornament" aria-hidden="true"><span>YOUR</span><strong>STORE</strong><small>YOUR RULES</small></div>
+  <div class="seller-page-head"><div><p class="eyebrow">SELLER STUDIO / WORKSPACE</p><h1>Your shop, in your hands.</h1><p>Manage your product catalogue, keep listings current and handle order fulfilment from one focused workspace.</p></div><div class="seller-page-code"><span>SELLER SPACE</span><strong>STORE / 01</strong></div></div>
+  <div class="seller-kpis">
+    <div class="seller-kpi"><span class="seller-kpi-icon">▦</span><div><strong>Catalogue management</strong><small>Add, edit and maintain your listings</small></div></div>
+    <div class="seller-kpi"><span class="seller-kpi-icon">↗</span><div><strong>Product presentation</strong><small>Clear photos and details help buyers</small></div></div>
+    <div class="seller-kpi"><span class="seller-kpi-icon">▤</span><div><strong>Order fulfilment</strong><small>Review orders in the order desk</small></div></div>
   </div>
   <div class="seller-layout">
+    <div class="seller-inventory"><div class="section-heading compact"><div><p class="eyebrow">YOUR CATALOGUE</p><h2>Published products</h2></div><span class="section-pill">INVENTORY DESK</span></div><p class="small">Your listings appear here. Edit details or remove a product that is no longer available.</p><div id="sellerProducts"></div></div>
     <div class="card seller-editor">
-      <div class="seller-form-title"><div><p class="eyebrow">PRODUCT DETAILS</p><h2 id="productFormTitle">Add Product</h2></div><span class="small">Clear photos help buyers decide.</span></div>
-      <div class="row">
-        <div><label for="productName">Product name</label><input id="productName" placeholder="e.g. Wireless headphones"></div>
-        <div><label for="productCategory">Category</label><input id="productCategory" placeholder="e.g. Electronics"></div>
-      </div>
+      <div class="seller-form-title"><div><p class="eyebrow">LISTING WORKSHOP</p><h2 id="productFormTitle">Add a product</h2></div><span class="small">A clear listing earns attention.</span></div>
+      <div class="seller-form-step">STEP 01 / PRODUCT DETAILS</div>
+      <div class="row"><div><label for="productName">Product name</label><input id="productName" placeholder="e.g. Wireless headphones"></div><div><label for="productCategory">Category</label><input id="productCategory" placeholder="e.g. Electronics"></div></div>
       <label for="productDescription">Description</label><textarea id="productDescription" placeholder="What should buyers know about this item?"></textarea>
-      <div class="row">
-        <div><label for="productPrice">Price (₹)</label><input id="productPrice" type="number" min="0" placeholder="0.00"></div>
-        <div><label for="productStock">Available stock</label><input id="productStock" type="number" min="0" placeholder="0"></div>
-      </div>
-      <label>Product image</label>
-      <div class="image-uploader">
-        <img id="productImagePreview" class="image-preview" src="https://placehold.co/300x260?text=Product+Photo" alt="Product image preview">
-        <div class="image-tools">
-          <input id="productImageFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Upload product image">
-          <span class="image-help">JPG, PNG or WebP · max 5 MB. The image is resized before saving.</span>
-          <label for="productImage">Or paste an image URL</label>
-          <input id="productImage" type="url" placeholder="https://example.com/product.jpg">
-          <button type="button" class="password-toggle" onclick="clearProductImage()">Remove image</button>
-        </div>
-      </div>
-      <button onclick="saveProduct()" id="productSaveButton">Add Product</button>
-      <button onclick="cancelEdit()" id="cancelEditButton" class="hidden">Cancel Edit</button>
-    </div>
-    <div class="seller-inventory">
-      <div class="section-heading compact"><div><p class="eyebrow">YOUR CATALOGUE</p><h2>My products</h2></div><span class="section-pill">INVENTORY WORKSPACE</span></div>
-      <div id="sellerProducts"></div>
+      <div class="row"><div><label for="productPrice">Price (₹)</label><input id="productPrice" type="number" min="0" placeholder="0.00"></div><div><label for="productStock">Available stock</label><input id="productStock" type="number" min="0" placeholder="0"></div></div>
+      <div class="seller-form-step">STEP 02 / PRODUCT IMAGE</div>
+      <div class="image-uploader"><img id="productImagePreview" class="image-preview" src="https://placehold.co/300x260?text=Product+Photo" alt="Product image preview"><div class="image-tools"><input id="productImageFile" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Upload product image"><span class="image-help">JPG, PNG or WebP · max 5 MB. The image is resized before saving.</span><label for="productImage">Or paste an image URL</label><input id="productImage" type="url" placeholder="https://example.com/product.jpg"><button type="button" class="password-toggle" onclick="clearProductImage()">Remove image</button></div></div>
+      <button onclick="saveProduct()" id="productSaveButton">Publish product</button><button onclick="cancelEdit()" id="cancelEditButton" class="hidden">Cancel edit</button>
     </div>
   </div>
 </section>
 
     <!-- SELLER ORDERS -->
     <section id="sellerOrdersSection" class="hidden">
-  <div class="section-header-large"><p class="eyebrow">SELLER STUDIO</p><h1>Incoming orders</h1><p>Review customer orders and keep order statuses up to date.</p></div>
+  <div class="seller-orders-hero"><div><p class="eyebrow">SELLER STUDIO / FULFILMENT</p><h1>Your order desk.</h1><p>Review incoming orders and update the order status as fulfilment progresses.</p></div><div class="order-legend"><span>01 / PROCESSING</span><span>02 / SHIPPED</span><span>03 / DELIVERED</span></div></div>
   <div id="sellerOrders"></div>
 </section>
 
     <!-- PRODUCT REVIEWS -->
     <section id="reviewsSection" class="hidden">
         <div class="card">
-            <button class="password-toggle" onclick="showProducts()">← Back to products</button>
+            <button class="password-toggle review-back" onclick="showProducts()">← Return to collection</button>
             <h2 id="reviewsProductTitle">Product reviews</h2>
             <div id="reviewsList"></div>
             <div id="reviewForm" class="hidden">
@@ -425,30 +465,19 @@ footer{display:flex;justify-content:space-between;gap:15px;padding:28px max(25px
 
     <!-- ADMIN PANEL -->
     <section id="adminSection" class="hidden">
-  <div class="section-header-large"><p class="eyebrow">VISHNURAJMART OPERATIONS</p><h1>Control center</h1><p>Review platform accounts, orders and product listings in one workspace.</p></div>
-  <div class="admin-console-banner">
-    <div><strong>Marketplace operations</strong><p>Account directory, order activity and listing moderation in one access-controlled workspace.</p></div>
-    <span class="section-pill">ADMIN CONSOLE</span>
-  </div>
+  <div class="admin-console-head"><div><p class="eyebrow">VISHNURAJMART / ADMIN OPERATIONS</p><h1>Command centre.</h1><p>Keep an eye on marketplace accounts, order activity and product listings from a single operations console.</p></div><span class="admin-status-tag">ACCESS CONTROLLED / ADMIN</span></div>
+  <div class="admin-console-banner"><div><strong>Marketplace overview</strong><p>Records below are retrieved from the application API. Use product moderation carefully.</p></div><span class="section-pill">OPERATIONS / 01</span></div>
   <div class="admin-panels">
-    <div class="card admin-panel">
-      <div class="admin-panel-heading"><h3><span class="admin-panel-icon">♙</span>All users</h3><span class="admin-panel-note">ACCOUNT DIRECTORY</span></div>
-      <div id="adminUsers"><p>Loading users…</p></div>
-    </div>
-    <div class="card admin-panel">
-      <div class="admin-panel-heading"><h3><span class="admin-panel-icon">▤</span>All orders</h3><span class="admin-panel-note">ORDER ACTIVITY</span></div>
-      <div id="adminOrders"><p>Loading orders…</p></div>
-    </div>
-    <div class="card admin-panel">
-      <div class="admin-panel-heading"><h3><span class="admin-panel-icon">◇</span>Product moderation</h3><span class="admin-panel-note">LISTING QUALITY</span></div>
-      <div id="adminProducts"><p>Loading products…</p></div>
-    </div>
+    <div class="card admin-panel"><div class="admin-panel-heading"><h3><span class="admin-panel-icon">♙</span>Account directory</h3><span class="admin-panel-note">USERS / ACCESS</span></div><div id="adminUsers"><p>Loading users…</p></div></div>
+    <div class="card admin-panel"><div class="admin-panel-heading"><h3><span class="admin-panel-icon">▤</span>Order activity</h3><span class="admin-panel-note">ORDERS / FULFILMENT</span></div><div id="adminOrders"><p>Loading orders…</p></div></div>
+    <div class="card admin-panel"><div class="admin-panel-heading"><h3><span class="admin-panel-icon">◇</span>Product moderation</h3><span class="admin-panel-note">CATALOGUE / QUALITY</span></div><div id="adminProducts"><p>Loading products…</p></div></div>
   </div>
 </section>
-
-</div>
+</main>
 
 <footer><span>© 2026 <strong>VishnuRajMart</strong> · Shopping made simpler, every day.</span><span>Discover more. Shop thoughtfully. ♧</span></footer>
+  </div>
+</div>
 
 <script>
 let currentUser = null;
@@ -518,6 +547,14 @@ function togglePassword(id, button) {
     button.textContent = showing ? "Show" : "Hide";
 }
 
+function setPageTitle(title, sectionId) {
+    const heading = document.getElementById("pageTitle");
+    if (heading) heading.textContent = title;
+    document.querySelectorAll(".role-nav button[data-section]").forEach(function(button) {
+        button.classList.toggle("active", Boolean(sectionId) && button.getAttribute("data-section") === sectionId);
+    });
+}
+
 function hideSections() {
     [
         "loginSection",
@@ -548,26 +585,23 @@ function showMessage(text) {
 }
 
 function updateNav() {
-    document.getElementById("guestNav").classList.add("hidden");
-    document.getElementById("buyerNav").classList.add("hidden");
-    document.getElementById("sellerNav").classList.add("hidden");
-    document.getElementById("adminNav").classList.add("hidden");
-
-    if (!currentUser) {
-        document.getElementById("guestNav").classList.remove("hidden");
-        return;
-    }
-
-    if (currentUser.role === "BUYER") {
-        document.getElementById("buyerNav").classList.remove("hidden");
-    }
-
-    if (currentUser.role === "SELLER") {
-        document.getElementById("sellerNav").classList.remove("hidden");
-    }
-    if (currentUser.role === "ADMIN") {
-        document.getElementById("adminNav").classList.remove("hidden");
-    }
+    ["guestNav", "buyerNav", "sellerNav", "adminNav"].forEach(function(id) {
+        const nav = document.getElementById(id);
+        if (nav) nav.classList.add("hidden");
+    });
+    const name = currentUser ? (currentUser.name || currentUser.email || "Member") : "Guest visitor";
+    const role = currentUser && currentUser.role ? currentUser.role : "VISITOR";
+    const display = document.getElementById("userDisplay");
+    const roleTag = document.getElementById("userRoleTag");
+    const avatar = document.getElementById("userAvatar");
+    if (display) display.textContent = name;
+    if (roleTag) roleTag.textContent = role;
+    if (avatar) avatar.textContent = String(name).trim().charAt(0).toUpperCase() || "V";
+    const navId = currentUser && currentUser.role === "BUYER" ? "buyerNav" :
+                  currentUser && currentUser.role === "SELLER" ? "sellerNav" :
+                  currentUser && currentUser.role === "ADMIN" ? "adminNav" : "guestNav";
+    const nav = document.getElementById(navId);
+    if (nav) nav.classList.remove("hidden");
 }
 
 async function api(url, options = {}) {
@@ -618,17 +652,20 @@ async function checkLogin() {
 }
 
 function showLogin() {
+    setPageTitle("Welcome back", "loginSection");
     hideSections();
     document.getElementById("loginSection").classList.remove("hidden");
 }
 
 function showRegister() {
+    setPageTitle("Create your account", "registerSection");
     hideSections();
     document.getElementById("registerSection").classList.remove("hidden");
 }
 
 
 function showForgotPassword() {
+    setPageTitle("Recover account access", "forgotSection");
     hideSections();
     document.getElementById("forgotEmail").value =
         document.getElementById("loginEmail").value || "";
@@ -636,6 +673,7 @@ function showForgotPassword() {
 }
 
 function showResetOtp(email) {
+    setPageTitle("Verify reset code", "resetOtpSection");
     hideSections();
     pendingResetEmail = email || pendingResetEmail;
     document.getElementById("resetOtpEmail").value = pendingResetEmail;
@@ -644,6 +682,7 @@ function showResetOtp(email) {
 }
 
 function showResetPassword() {
+    setPageTitle("Choose a new password", "resetPasswordSection");
     hideSections();
     document.getElementById("newPassword").value = "";
     document.getElementById("resetPasswordSection").classList.remove("hidden");
@@ -751,6 +790,7 @@ async function resetPassword() {
 }
 
 function showOtp(email) {
+    setPageTitle("Verify your account", "otpSection");
     hideSections();
     pendingVerificationEmail = email || pendingVerificationEmail;
     document.getElementById("otpEmail").value = pendingVerificationEmail;
@@ -915,6 +955,7 @@ async function logout() {
 }
 
 async function showProducts() {
+    setPageTitle("Discover the collection", "productsSection");
     if (!currentUser) {
         showMessage("Please login to view products");
         showLogin();
@@ -963,41 +1004,33 @@ function filterProducts() {
 
 function renderProducts(products) {
     const list = document.getElementById("productsList");
-
     if (!products.length) {
-        list.innerHTML = '<div class="empty">No products found.</div>';
+        list.innerHTML = '<div class="empty"><strong>No finds in this collection yet.</strong><br>Try another category or search term.</div>';
         return;
     }
-
-    list.innerHTML = products.map(product => `
-        <div class="product">
-            <img class="product-image"
-                 src="${escapeHtml(product.image_url || 'https://placehold.co/500x350?text=Product')}"
-                 alt="${escapeHtml(product.name)}"
-                 onerror="this.src='https://placehold.co/500x350?text=Product'">
-
-            <h3>${escapeHtml(product.name)}</h3>
-            <p class="small">${escapeHtml(product.description || "")}</p>
-            <p><span class="badge">${escapeHtml(product.category || "Other")}</span></p>
-            <p class="price">₹${Number(product.price).toFixed(2)}</p>
-            <p class="stock">${product.stock > 0 ? `In Stock: ${product.stock}` : "Out of Stock"}</p>
-            <p class="seller">Seller: ${escapeHtml(product.seller || "-")}</p>
-            <button class="password-toggle" onclick="showProductReviews(${product.id})">Reviews & ratings</button>
-
-            ${
-                currentUser && currentUser.role === "BUYER"
-                ? `
-                    <input type="number" min="1" max="${product.stock}" value="1"
-                           id="qty-${product.id}" ${product.stock <= 0 ? "disabled" : ""}>
-                    <button onclick="addToCart(${product.id}, ${product.stock})"
-                            ${product.stock <= 0 ? "disabled" : ""}>
-                        ${product.stock <= 0 ? "Out of Stock" : "Add to Cart"}
-                    </button>
-                  `
-                : ""
-            }
-        </div>
-    `).join("");
+    list.innerHTML = products.map(function(product) {
+        const stock = Number(product.stock) || 0;
+        const productId = Number(product.id);
+        const isBuyer = currentUser && currentUser.role === "BUYER";
+        const stockClass = stock > 0 ? "in-stock" : "out-stock";
+        const stockLabel = stock > 0 ? "IN STOCK · " + stock : "SOLD OUT";
+        let purchaseControls = "";
+        if (isBuyer) {
+            purchaseControls = '<div class="product-purchase">' +
+                '<input class="product-qty" type="number" min="1" max="' + stock + '" value="1" id="qty-' + productId + '" aria-label="Quantity for ' + escapeHtml(product.name) + '"' + (stock <= 0 ? " disabled" : "") + '>' +
+                '<button class="add-to-bag" onclick="addToCart(' + productId + ',' + stock + ')"' + (stock <= 0 ? " disabled" : "") + '>Add to bag <span>↗</span></button></div>';
+        } else {
+            purchaseControls = '<button class="product-review-cta" onclick="showProductReviews(' + productId + ')">See ratings ↗</button>';
+        }
+        return '<article class="product-card"><div class="product-media">' +
+          '<img src="' + escapeHtml(product.image_url || fallbackProductImage) + '" alt="' + escapeHtml(product.name) + '" loading="lazy" onerror="this.onerror=null;this.src=&quot;https://placehold.co/500x350?text=Product&quot;">' +
+          '<span class="product-category">' + escapeHtml(product.category || "Other") + '</span>' +
+          '<button class="product-review-link" type="button" onclick="showProductReviews(' + productId + ')">↗ Reviews</button></div>' +
+          '<div class="product-info"><div class="product-meta"><span>MARKETPLACE FIND</span><span class="stock-status ' + stockClass + '">' + stockLabel + '</span></div>' +
+          '<h3>' + escapeHtml(product.name) + '</h3><p class="product-description">' + escapeHtml(product.description || "A product from a VishnuRajMart seller.") + '</p>' +
+          '<div class="product-seller">SOLD BY <strong>' + escapeHtml(product.seller || "Marketplace seller") + '</strong></div>' +
+          '<div class="product-bottom"><div><span class="product-price-label">PRICE</span><strong class="product-price">₹' + Number(product.price).toFixed(2) + '</strong></div>' + purchaseControls + '</div></div></article>';
+    }).join("");
 }
 
 async function updateCartCount() {
@@ -1039,65 +1072,26 @@ async function addToCart(productId, stock) {
 
 async function showCart() {
     hideSections();
+    setPageTitle("Your shopping bag", "cartSection");
     document.getElementById("cartSection").classList.remove("hidden");
-
     try {
         const data = await api("/cart");
-
         const list = document.getElementById("cartList");
         const items = data.items || [];
-
         if (items.length === 0) {
-            list.innerHTML = "<p>Cart is empty.</p>";
+            list.innerHTML = '<div class="empty"><strong>Your bag is waiting for a find.</strong><br>Head back to the collection and add something you like.</div>';
             document.getElementById("cartTotal").textContent = "Total: ₹0";
             return;
         }
-
-        list.innerHTML = `
-            <table>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Qty</th>
-                    <th>Subtotal</th>
-                    <th>Action</th>
-                </tr>
-
-                ${items.map(item => `
-                    <tr>
-                        <td>${escapeHtml(item.name)}</td>
-                        <td>₹${Number(item.price).toFixed(2)}</td>
-
-                        <td>
-                            <input
-                                style="width:75px"
-                                type="number"
-                                min="1"
-                                max="${item.stock}"
-                                value="${item.quantity}"
-                                id="cartqty-${item.cart_id}"
-                            >
-                        </td>
-
-                        <td>₹${Number(item.subtotal).toFixed(2)}</td>
-
-                        <td class="actions">
-                            <button onclick="updateCart(${item.cart_id})">
-                                Update
-                            </button>
-
-                            <button onclick="removeCart(${item.cart_id})">
-                                Remove
-                            </button>
-                        </td>
-                    </tr>
-                `).join("")}
-            </table>
-        `;
-
-        document.getElementById("cartTotal").textContent =
-            `Total: ₹${Number(data.total || 0).toFixed(2)}`;
-
+        list.innerHTML = '<div class="cart-items-stack">' + items.map(function(item) {
+            const img = item.image_url ? '<img src="' + escapeHtml(item.image_url) + '" alt="' + escapeHtml(item.name) + '" onerror="this.style.display=&quot;none&quot;">' : '<span aria-hidden="true">V.</span>';
+            return '<article class="cart-item"><div class="cart-item-art">' + img + '</div>' +
+                '<div class="cart-item-copy"><small>YOUR BAG / ITEM</small><h3>' + escapeHtml(item.name) + '</h3><p>₹' + Number(item.price).toFixed(2) + ' each</p></div>' +
+                '<label class="cart-quantity" for="cartqty-' + item.cart_id + '">QUANTITY<input type="number" min="1" max="' + item.stock + '" value="' + item.quantity + '" id="cartqty-' + item.cart_id + '"></label>' +
+                '<div class="cart-item-total"><small>SUBTOTAL</small><strong>₹' + Number(item.subtotal).toFixed(2) + '</strong></div>' +
+                '<div class="cart-item-actions"><button class="button-quiet" onclick="updateCart(' + item.cart_id + ')">Update</button><button class="button-danger" onclick="removeCart(' + item.cart_id + ')">Remove</button></div></article>';
+        }).join("") + '</div>';
+        document.getElementById("cartTotal").textContent = "Total: ₹" + Number(data.total || 0).toFixed(2);
     } catch (error) {
         showMessage(error.message);
     }
@@ -1156,42 +1150,30 @@ async function placeOrder() {
 
 async function showBuyerOrders() {
     hideSections();
+    setPageTitle("Your order history", "buyerOrdersSection");
     document.getElementById("buyerOrdersSection").classList.remove("hidden");
-
     try {
         const orders = await api("/orders");
         const box = document.getElementById("buyerOrders");
-
         if (!Array.isArray(orders) || orders.length === 0) {
-            box.innerHTML = "<p>No orders yet.</p>";
+            box.innerHTML = '<div class="empty"><strong>No orders just yet.</strong><br>Your placed orders will appear here when you make your first purchase.</div>';
             return;
         }
-
-        box.innerHTML = `
-            <table>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Total</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                </tr>
-
-                ${orders.map(order => `
-                    <tr>
-                        <td>${order.order_id}</td>
-                        <td>₹${Number(order.total).toFixed(2)}</td>
-                        <td>${escapeHtml(order.status)}</td>
-                        <td>${escapeHtml(order.created_at)}</td>
-                    </tr>
-                `).join("")}
-            </table>
-        `;
+        box.innerHTML = '<div class="buyer-order-list">' + orders.map(function(order, index) {
+            const status = String(order.status || "PROCESSING").toUpperCase();
+            const statusClass = "status-" + status.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+            return '<article class="buyer-order-card"><div class="order-mark" aria-hidden="true">' + String(index + 1).padStart(2, "0") + '</div>' +
+                '<div class="order-main"><small>PURCHASE / ' + escapeHtml(order.created_at || "DATE UNAVAILABLE") + '</small><h3>Order #' + escapeHtml(order.order_id) + '</h3><p>Keep this reference for your order enquiry.</p></div>' +
+                '<div class="order-state"><span class="status-pill ' + statusClass + '">' + escapeHtml(status) + '</span></div>' +
+                '<div class="order-total"><small>ORDER TOTAL</small><strong>₹' + Number(order.total).toFixed(2) + '</strong></div></article>';
+        }).join("") + '</div>';
     } catch (error) {
         showMessage(error.message);
     }
 }
 
 async function showSellerDashboard() {
+    setPageTitle("Seller workspace", "sellerSection");
     hideSections();
     document.getElementById("sellerSection").classList.remove("hidden");
     await loadSellerProducts();
@@ -1201,30 +1183,20 @@ async function loadSellerProducts() {
     try {
         const products = await api("/seller/products");
         const box = document.getElementById("sellerProducts");
-
         if (!Array.isArray(products) || products.length === 0) {
-            box.innerHTML = '<div class="empty">No products added yet. Use the form above to add your first product.</div>';
+            box.innerHTML = '<div class="empty"><strong>Your catalogue is empty.</strong><br>Use the listing workshop to publish your first product.</div>';
             window.sellerProductsCache = [];
             return;
         }
-
         window.sellerProductsCache = products;
-        box.innerHTML = `<div class="seller-product-grid">
-            ${products.map(product => `
-                <article class="seller-product-card">
-                    <img src="${escapeHtml(product.image_url || fallbackProductImage)}"
-                         alt="${escapeHtml(product.name)}"
-                         onerror="this.onerror=null;this.src='https://placehold.co/500x350?text=Product'">
-                    <h3>${escapeHtml(product.name)}</h3>
-                    <p class="small">${escapeHtml(product.category || "Other")} · Stock: ${Number(product.stock) || 0}</p>
-                    <p class="price">₹${Number(product.price).toFixed(2)}</p>
-                    <div class="actions">
-                        <button onclick="editProductById(${Number(product.id)})">Edit</button>
-                        <button class="danger-button" onclick="deleteProduct(${Number(product.id)})">Delete</button>
-                    </div>
-                </article>
-            `).join("")}
-        </div>`;
+        box.innerHTML = '<div class="seller-product-grid">' + products.map(function(product) {
+            const stock = Number(product.stock) || 0;
+            const stockTone = stock > 0 ? "in-stock" : "out-stock";
+            const stockCopy = stock > 0 ? "In stock · " + stock : "Out of stock";
+            return '<article class="seller-product-card"><img src="' + escapeHtml(product.image_url || fallbackProductImage) + '" alt="' + escapeHtml(product.name) + '" loading="lazy" onerror="this.onerror=null;this.src=&quot;https://placehold.co/500x350?text=Product&quot;">' +
+                '<div class="seller-product-details"><h3>' + escapeHtml(product.name) + '</h3><p class="small">' + escapeHtml(product.category || "Other") + ' · <span class="stock-status ' + stockTone + '">' + stockCopy + '</span></p><p class="price">₹' + Number(product.price).toFixed(2) + '</p></div>' +
+                '<div class="seller-product-actions"><span class="section-pill">LISTING #' + Number(product.id) + '</span><div class="actions"><button class="button-quiet" onclick="editProductById(' + Number(product.id) + ')">Edit</button><button class="danger-button" onclick="deleteProduct(' + Number(product.id) + ')">Delete</button></div></div></article>';
+        }).join("") + '</div>';
     } catch (error) {
         showMessage(error.message);
     }
@@ -1360,53 +1332,28 @@ async function deleteProduct(productId) {
 
 async function showSellerOrders() {
     hideSections();
+    setPageTitle("Seller order desk", "sellerOrdersSection");
     document.getElementById("sellerOrdersSection").classList.remove("hidden");
-
     try {
         const orders = await api("/seller/orders");
         const box = document.getElementById("sellerOrders");
-
         if (!Array.isArray(orders) || orders.length === 0) {
-            box.innerHTML = "<p>No seller orders.</p>";
+            box.innerHTML = '<div class="empty"><strong>No seller orders have arrived yet.</strong><br>New orders will be listed here when customers make purchases.</div>';
             return;
         }
-
-        box.innerHTML = `
-            <table>
-                <tr>
-                    <th>Order</th>
-                    <th>Buyer</th>
-                    <th>Product</th>
-                    <th>Qty</th>
-                    <th>Price</th>
-                    <th>Status</th>
-                    <th>Change Status</th>
-                </tr>
-
-                ${orders.map(order => `
-                    <tr>
-                        <td>${order.order_id}</td>
-                        <td>${escapeHtml(order.buyer)}</td>
-                        <td>${escapeHtml(order.product)}</td>
-                        <td>${order.quantity}</td>
-                        <td>₹${Number(order.price).toFixed(2)}</td>
-                        <td>${escapeHtml(order.status)}</td>
-
-                        <td>
-                            <select id="status-${order.order_id}">
-                                <option value="PROCESSING">PROCESSING</option>
-                                <option value="SHIPPED">SHIPPED</option>
-                                <option value="DELIVERED">DELIVERED</option>
-                            </select>
-
-                            <button onclick="updateOrderStatus(${order.order_id})">
-                                Update
-                            </button>
-                        </td>
-                    </tr>
-                `).join("")}
-            </table>
-        `;
+        box.innerHTML = orders.map(function(order) {
+            const status = String(order.status || "PROCESSING").toUpperCase();
+            const statusClass = "status-" + status.toLowerCase().replace(/[^a-z0-9_-]/g, "");
+            const processingSelected = status === "PROCESSING" ? " selected" : "";
+            const shippedSelected = status === "SHIPPED" ? " selected" : "";
+            const deliveredSelected = status === "DELIVERED" ? " selected" : "";
+            return '<article class="seller-order-card"><div class="seller-order-main"><div class="seller-order-id"><strong>Order #' + escapeHtml(order.order_id) + '</strong><span class="status-pill ' + statusClass + '">' + escapeHtml(status) + '</span></div>' +
+                '<div class="seller-order-meta"><span>BUYER <strong>' + escapeHtml(order.buyer) + '</strong></span><span>QUANTITY <strong>' + escapeHtml(order.quantity) + '</strong></span><span>PRICE <strong>₹' + Number(order.price).toFixed(2) + '</strong></span></div>' +
+                '<div class="seller-order-product">PRODUCT / <strong>' + escapeHtml(order.product) + '</strong></div></div>' +
+                '<div class="seller-order-controls"><label for="status-' + order.order_id + '">UPDATE ORDER STATUS</label><select id="status-' + order.order_id + '">' +
+                '<option value="PROCESSING"' + processingSelected + '>Processing</option><option value="SHIPPED"' + shippedSelected + '>Shipped</option><option value="DELIVERED"' + deliveredSelected + '>Delivered</option></select>' +
+                '<button onclick="updateOrderStatus(' + Number(order.order_id) + ')">Save status ↗</button></div></article>';
+        }).join("");
     } catch (error) {
         showMessage(error.message);
     }
@@ -1433,6 +1380,7 @@ async function updateOrderStatus(orderId) {
 let activeReviewProductId = 0;
 
 async function showProductReviews(productId) {
+    setPageTitle("Product reviews", "reviewsSection");
     activeReviewProductId = Number(productId);
     const selectedProduct = allProducts.find(p => Number(p.id) === activeReviewProductId);
     const productName = selectedProduct ? selectedProduct.name : ("Product #" + activeReviewProductId);
@@ -1482,6 +1430,7 @@ async function submitProductReview() {
 }
 
 async function showAdminDashboard() {
+    setPageTitle("Admin command centre", "adminSection");
     if (!currentUser || currentUser.role !== "ADMIN") {
         showMessage("Admin access only");
         return;
