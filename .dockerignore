@@ -1,0 +1,15 @@
+.git
+.github
+build
+cmake-build-*
+.vscode
+.idea
+*.log
+*.dump
+*.bak
+.env
+.env.*
+!.env.example
+config.json
+config.*.json
+secrets/
