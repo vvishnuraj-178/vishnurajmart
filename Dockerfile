@@ -54,6 +54,11 @@ WORKDIR /app
 COPY --from=build --chown=app:app /src/build/VishnuRajMart ./VishnuRajMart
 COPY --chown=app:app vishnurajmart.html ./vishnurajmart.html
 
+# Drogon writes multipart upload temporary files under ./uploads/tmp.
+# The runtime process is non-root, so create that directory and grant ownership.
+RUN mkdir -p /app/uploads/tmp \
+    && chown -R app:app /app
+
 ENV PORT=8080
 EXPOSE 8080
 USER app
