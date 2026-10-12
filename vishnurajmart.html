@@ -1,1 +1,2052 @@
-VishnuRajMart project file — initial upload placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VishnuRajMart</title>
+
+
+
+<style>
+:root{
+    --primary:#173b6c;
+    --primary-dark:#0f294d;
+    --accent:#f4b400;
+    --bg:#f5f7fa;
+    --surface:#ffffff;
+    --surface-soft:#f8fafc;
+    --text:#172033;
+    --muted:#667085;
+    --border:#dfe5ec;
+    --danger:#c62828;
+    --success:#1f7a4d;
+    --shadow:0 8px 24px rgba(16,24,40,.08);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+header{
+    min-height:68px;
+    padding:12px 5%;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+header h2{
+    margin:0;
+    font-size:24px;
+    color:var(--primary);
+    letter-spacing:.2px;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+button{
+    border:1px solid transparent;
+    background:var(--primary);
+    color:white;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s ease;
+}
+
+button:hover{
+    background:var(--primary-dark);
+    transform:translateY(-1px);
+}
+
+nav button{
+    background:transparent;
+    color:var(--primary);
+    border-color:var(--border);
+}
+
+nav button:hover{
+    background:#eef3f8;
+    transform:none;
+}
+
+.container{
+    width:min(1180px,92%);
+    margin:28px auto 50px;
+}
+
+.card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:24px;
+    box-shadow:var(--shadow);
+}
+
+.auth-box{
+    width:min(470px,100%);
+    margin:48px auto;
+}
+
+.auth-box h2{
+    margin-top:0;
+    margin-bottom:8px;
+    color:var(--primary);
+}
+
+label{
+    display:block;
+    margin:14px 0 6px;
+    font-size:14px;
+    font-weight:700;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid #cfd7e3;
+    border-radius:8px;
+    padding:11px 12px;
+    font-size:15px;
+    background:white;
+    color:var(--text);
+    outline:none;
+    transition:.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#7e9fc6;
+    box-shadow:0 0 0 3px rgba(23,59,108,.08);
+}
+
+textarea{
+    resize:vertical;
+    min-height:100px;
+}
+
+.auth-box > button{
+    width:100%;
+    margin-top:18px;
+}
+
+.small{
+    font-size:13px;
+    color:var(--muted);
+    line-height:1.5;
+}
+
+a{
+    color:var(--primary);
+    text-decoration:none;
+    font-weight:600;
+}
+
+a:hover{
+    text-decoration:underline;
+}
+
+.password-box{
+    display:flex;
+    align-items:stretch;
+    gap:8px;
+}
+
+.password-box input{
+    flex:1;
+}
+
+.password-box .show-password{
+    width:auto;
+    margin:0;
+    white-space:nowrap;
+    padding:0 14px;
+    background:var(--surface-soft);
+    color:var(--primary);
+    border:1px solid var(--border);
+}
+
+.password-box .show-password:hover{
+    background:#edf2f7;
+    transform:none;
+}
+
+.hero{
+    background:linear-gradient(120deg,#173b6c,#285c96);
+    color:white;
+    border-radius:16px;
+    padding:34px;
+    margin-bottom:24px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+    overflow:hidden;
+}
+
+.hero h1{
+    margin:8px 0 10px;
+    font-size:34px;
+}
+
+.hero p{
+    margin:0;
+    color:#e7edf6;
+    max-width:650px;
+    line-height:1.6;
+}
+
+.hero .badge{
+    display:inline-block;
+    background:rgba(255,255,255,.14);
+    border:1px solid rgba(255,255,255,.2);
+    color:white;
+    padding:6px 10px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.hero-img{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    flex:none;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:18px;
+}
+
+.product{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+    transition:.2s ease;
+}
+
+.product:hover{
+    box-shadow:var(--shadow);
+    transform:translateY(-2px);
+}
+
+.product img{
+    width:100%;
+    height:190px;
+    object-fit:contain;
+    background:#f7f9fb;
+    border-radius:9px;
+    margin-bottom:12px;
+}
+
+.product h3{
+    margin:4px 0 8px;
+    font-size:17px;
+}
+
+.product p{
+    margin:6px 0;
+    line-height:1.45;
+}
+
+.product .price{
+    font-size:20px;
+    font-weight:800;
+    color:var(--primary);
+}
+
+.product .stock{
+    color:var(--success);
+    font-size:13px;
+    font-weight:700;
+}
+
+.product button{
+    width:100%;
+    margin-top:8px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:14px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+th,
+td{
+    padding:11px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+}
+
+th{
+    background:#f6f8fb;
+    color:#344054;
+    font-size:14px;
+}
+
+.message{
+    max-width:760px;
+    margin:0 auto 18px;
+    padding:12px 14px;
+    border:1px solid #b9cce2;
+    border-radius:9px;
+    background:#eef5fc;
+    color:#173b6c;
+    font-weight:600;
+}
+
+.password-rules{
+    margin-top:8px;
+    padding:10px 12px;
+    border-radius:8px;
+    background:#f8fafc;
+    border:1px solid var(--border);
+    font-size:13px;
+    line-height:1.6;
+}
+
+.good{
+    color:var(--success);
+}
+
+.bad{
+    color:var(--danger);
+}
+
+.actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.actions button{
+    width:auto;
+}
+
+.hidden{
+    display:none!important;
+}
+
+footer{
+    text-align:center;
+    padding:22px 12px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+@media(max-width:900px){
+    .products{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+    }
+
+    .hero-img{
+        width:110px;
+        height:110px;
+    }
+}
+
+@media(max-width:650px){
+    header{
+        padding:10px 4%;
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    .container{
+        width:94%;
+        margin-top:18px;
+    }
+
+    .auth-box{
+        margin:26px auto;
+        padding:20px;
+    }
+
+    .row{
+        grid-template-columns:1fr;
+    }
+
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .hero{
+        padding:24px;
+    }
+
+    .hero h1{
+        font-size:27px;
+    }
+
+    .hero-img{
+        display:none;
+    }
+
+    .password-box{
+        gap:6px;
+    }
+}
+
+.password-wrap{display:flex;gap:8px;align-items:stretch}
+.password-wrap input{flex:1;min-width:0}
+.password-toggle{flex:none;min-width:72px;background:#f8fafc;color:var(--primary);border:1px solid var(--border)}
+.password-toggle:hover{background:#edf2f7}
+.toolbar{display:flex;align-items:center;gap:14px;justify-content:space-between;margin:0 0 20px;flex-wrap:wrap}
+.toolbar>input{max-width:420px;flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:#fff;color:var(--primary);border:1px solid var(--border);border-radius:999px;padding:9px 15px}
+.chip.active,.chip:hover{background:var(--primary);color:#fff}
+.badge{display:inline-block;border-radius:999px;padding:5px 9px;background:#eef4fb;color:var(--primary);font-size:12px;font-weight:700}
+.product{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.product img{display:block;object-fit:cover;height:210px;margin:0 0 14px}
+.product h3{line-height:1.35;overflow-wrap:anywhere}
+.product .small{min-height:38px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product .price{margin-top:auto;padding-top:10px}
+.product .seller{font-size:13px;color:var(--muted)}
+.product input[type=number]{margin-top:8px}
+.empty{grid-column:1/-1;text-align:center;padding:34px 18px;border:1px dashed var(--border);background:#fff;border-radius:14px;color:var(--muted)}
+.seller-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.seller-product-card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.seller-product-card img{width:100%;height:160px;object-fit:cover;background:#f3f6fa;border-radius:10px}
+.seller-product-card h3{margin:4px 0;overflow-wrap:anywhere}
+.seller-product-card .actions{margin-top:auto}
+.seller-product-card .actions button{flex:1}
+.image-uploader{display:grid;grid-template-columns:150px minmax(0,1fr);gap:16px;align-items:center;margin:10px 0 14px;padding:14px;border:1px dashed #bdc9d8;border-radius:12px;background:#fafcff}
+.image-preview{width:150px;height:130px;object-fit:contain;background:#f0f4f8;border:1px solid var(--border);border-radius:10px}
+.image-tools{display:flex;flex-direction:column;gap:9px;min-width:0}
+.image-tools input[type=file]{padding:8px;background:white}
+.image-help{font-size:12px;color:var(--muted);line-height:1.5}
+.seller-form-title{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.seller-form-title h2{margin:0}
+input:disabled,button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+@media(max-width:900px){.seller-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.seller-product-grid{grid-template-columns:1fr}.image-uploader{grid-template-columns:1fr}.image-preview{width:100%;height:180px}.toolbar>input{max-width:none;width:100%}.product img{height:220px}}
+
+
+/* VishnuRajMart visual refresh */
+:root{--primary:#234b86;--primary-dark:#173563;--accent:#f5b83d;--bg:#f4f7fc;--surface:#fff;--surface-soft:#f8faff;--text:#152238;--muted:#68778d;--border:#e1e8f2;--shadow:0 12px 34px rgba(24,48,86,.09)}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at top left,#eaf1ff 0,transparent 42%),var(--bg);line-height:1.5}
+header{padding:14px max(4%,calc((100% - 1240px)/2));background:rgba(255,255,255,.92);backdrop-filter:blur(14px);box-shadow:0 4px 20px rgba(24,48,86,.05)}
+header h2{font-size:26px;font-weight:850;letter-spacing:-.8px;cursor:pointer}
+header h2:before{content:"P";display:inline-grid;place-items:center;width:34px;height:34px;margin-right:9px;border-radius:11px;background:linear-gradient(135deg,#234b86,#497ed0);color:white;font-size:19px;vertical-align:middle;box-shadow:0 5px 12px #234b862c}
+nav{gap:7px}
+nav button{border-radius:999px;padding:9px 15px;font-size:13px}
+nav button:hover{background:#edf3ff;color:var(--primary)}
+.container{width:min(1240px,92%);margin:32px auto 64px;min-height:58vh}
+.card{border-radius:20px;padding:28px;border-color:#e3eaf4;box-shadow:0 12px 34px rgba(24,48,86,.07)}
+.auth-box{max-width:480px;margin:42px auto}
+.auth-box h2{font-size:27px;letter-spacing:-.6px}
+label{color:#34445d}
+input,select,textarea{border-radius:11px;border-color:#d5deeb;padding:12px 14px}
+input:focus,select:focus,textarea:focus{border-color:#7198d8;box-shadow:0 0 0 4px rgba(55,105,185,.1)}
+button{border-radius:11px;padding:11px 17px;box-shadow:0 2px 5px rgba(19,46,84,.04)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #91b8f7;outline-offset:2px}
+button:hover{box-shadow:0 7px 16px rgba(35,75,134,.14)}
+.hero{position:relative;background:linear-gradient(120deg,#142e54 0%,#234b86 58%,#4677bb 100%);border-radius:24px;padding:clamp(26px,5vw,52px);min-height:260px;box-shadow:0 18px 38px rgba(27,62,112,.18)}
+.hero:after{content:"";position:absolute;width:300px;height:300px;right:8%;top:-115px;border:1px solid #ffffff2b;border-radius:50%;box-shadow:0 0 0 32px #ffffff08,0 0 0 64px #ffffff06;pointer-events:none}
+.hero h1{font-size:clamp(29px,4vw,43px);max-width:720px;letter-spacing:-1.2px;line-height:1.13}
+.hero p{font-size:15px;max-width:690px}
+.hero .badge{letter-spacing:.7px}
+.hero-img{z-index:1;width:160px;height:160px;background:radial-gradient(circle at 35% 30%,#ffffff55,#ffffff08 68%);box-shadow:inset 0 0 35px #ffffff12}
+.toolbar{padding:14px;background:#ffffffc9;border:1px solid var(--border);border-radius:16px;box-shadow:0 7px 22px rgba(24,48,86,.04)}
+.toolbar>input{max-width:500px}
+.chip{font-size:13px;padding:9px 15px}
+.products{gap:20px}
+.product{padding:15px;border-radius:17px;box-shadow:0 6px 20px rgba(24,48,86,.035);display:flex;flex-direction:column}
+.product:hover{transform:translateY(-4px);border-color:#c8d8ef;box-shadow:0 16px 32px rgba(24,48,86,.1)}
+.product img{height:205px;background:linear-gradient(145deg,#f7f9fd,#edf2f9);padding:8px;border-radius:12px}
+.product h3{font-size:16px;letter-spacing:-.2px}
+.product .price{font-size:22px;letter-spacing:-.4px}
+.product button{margin-top:auto;margin-top:10px}
+.message{border-radius:12px;box-shadow:0 6px 18px rgba(24,48,86,.05)}
+.seller-product-card{border-radius:17px;padding:15px;box-shadow:0 6px 20px rgba(24,48,86,.04);transition:.2s ease}
+.seller-product-card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(24,48,86,.1)}
+.seller-product-card img{border-radius:12px}
+.image-uploader{border-radius:15px;background:#f8faff;border-color:#cad8ed}
+footer{border-top:1px solid var(--border);background:#ffffff80;padding:28px 12px}
+.hidden{display:none!important}
+#cartSection .card,#buyerOrdersSection,#sellerOrdersSection{overflow-x:auto}
+table{border-radius:13px}
+th{font-weight:750}
+td,th{padding:13px}
+@media(max-width:650px){header{align-items:stretch;gap:12px}header h2{font-size:23px}nav{gap:6px}nav button{padding:8px 11px;font-size:12px}.hero{border-radius:19px}.hero:after{right:-150px}.card{padding:20px}.toolbar{padding:10px}.products{gap:14px}.product img{height:220px}}
+/* Built-in FAQ helper: no external service or secret key required */
+.chat-launcher{position:fixed;right:22px;bottom:22px;z-index:1000;width:60px;height:60px;border:0;border-radius:50%;background:linear-gradient(135deg,#234b86,#477bd0);color:#fff;font-size:25px;box-shadow:0 12px 30px #234b8640;display:grid;place-items:center}
+.chat-launcher:hover{transform:translateY(-2px);background:linear-gradient(135deg,#173563,#315fa5)}
+.chat-panel{position:fixed;right:22px;bottom:94px;z-index:1000;width:min(370px,calc(100vw - 28px));height:min(520px,calc(100vh - 130px));background:#fff;border:1px solid #dce5f2;border-radius:20px;box-shadow:0 24px 70px #13294b35;display:flex;flex-direction:column;overflow:hidden}
+.chat-header{display:flex;align-items:center;gap:11px;padding:16px;background:linear-gradient(120deg,#173563,#315f9f);color:#fff}
+.chat-avatar{width:40px;height:40px;display:grid;place-items:center;border-radius:14px;background:#ffffff24;font-size:20px}
+.chat-heading{flex:1}.chat-heading strong{display:block;font-size:15px}.chat-heading span{font-size:12px;color:#dbe8fb}
+.chat-close{background:#ffffff18;border:1px solid #ffffff30;color:#fff;padding:7px 10px}
+.chat-messages{flex:1;overflow-y:auto;padding:15px;background:linear-gradient(#f7faff,#fff);display:flex;flex-direction:column;gap:10px}
+.chat-bubble{max-width:88%;padding:11px 13px;border-radius:15px;font-size:13px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-bubble.bot{align-self:flex-start;background:#eef3fb;color:#22334c;border-bottom-left-radius:5px}
+.chat-bubble.user{align-self:flex-end;background:#234b86;color:#fff;border-bottom-right-radius:5px}
+.chat-quick{display:flex;gap:7px;flex-wrap:wrap;padding:0 13px 12px;background:#fff}
+.chat-quick button{font-size:12px;padding:7px 10px;border:1px solid #dce5f2;background:#fff;color:#234b86;border-radius:999px;box-shadow:none}
+.chat-quick button:hover{background:#edf3ff;transform:none}
+.chat-compose{display:flex;gap:8px;padding:12px;border-top:1px solid #e8edf5;background:#fff}
+.chat-compose input{min-width:0;font-size:13px;padding:10px 12px}
+.chat-compose button{padding:10px 13px}
+.chat-note{font-size:10px;color:#8591a3;padding:0 13px 10px;background:#fff}
+@media(max-width:480px){.chat-launcher{right:14px;bottom:14px}.chat-panel{right:10px;bottom:82px;width:calc(100vw - 20px);height:min(520px,calc(100vh - 105px))}}
+
+</style>
+
+
+
+</head>
+<body>
+
+<header>
+    <h2 onclick="showProducts()">VishnuRajMart</h2>
+
+    <nav id="guestNav">
+        <button onclick="showLogin()">Login</button>
+        <button onclick="showRegister()">Register</button>
+    </nav>
+
+    <nav id="buyerNav" class="hidden">
+        <button onclick="showProducts()">Products</button>
+        <button onclick="showCart()">Cart <span id="cartCount" class="badge">0</span></button>
+        <button onclick="showBuyerOrders()">Orders</button>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <nav id="sellerNav" class="hidden">
+        <button onclick="showSellerDashboard()">My Products</button>
+        <button onclick="showSellerOrders()">Orders</button>
+        <button onclick="logout()">Logout</button>
+    </nav>
+
+    <nav id="adminNav" class="hidden">
+        <button onclick="showAdminDashboard()">Admin Panel</button>
+        <button onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<div class="container">
+
+    <div id="message"></div>
+
+    <!-- LOGIN -->
+    <section id="loginSection" class="card auth-box">
+        <h2>Login</h2>
+
+        <label>Email</label>
+        <input id="loginEmail" type="email" placeholder="Enter email">
+
+        <label>Password</label>
+        <div class="password-wrap">
+            <input id="loginPassword" type="password" placeholder="Enter password">
+            <button type="button" class="password-toggle" onclick="togglePassword('loginPassword', this)">Show</button>
+        </div>
+
+        <button onclick="login()">Login</button>
+<p class="small"><a href="#" onclick="showForgotPassword()">Forgot Password?</a></p>
+
+        <p class="small">
+            Don't have an account?
+            <a href="#" onclick="showRegister()">Register</a>
+        </p>
+    </section>
+
+
+    <!-- FORGOT PASSWORD -->
+    <section id="forgotSection" class="card auth-box hidden">
+        <h2>Forgot Password</h2>
+        <p class="small">Enter your registered email to receive a reset OTP.</p>
+
+        <label>Email</label>
+        <input id="forgotEmail" type="email" placeholder="Enter registered email">
+
+        <button onclick="sendResetOtp()">Send OTP</button>
+
+        <p class="small">
+            <a href="#" onclick="showLogin()">Back to Login</a>
+        </p>
+    </section>
+
+    <!-- RESET OTP -->
+    <section id="resetOtpSection" class="card auth-box hidden">
+        <h2>Verify Reset OTP</h2>
+
+        <label>Email</label>
+        <input id="resetOtpEmail" type="email" readonly>
+
+        <label>OTP</label>
+        <input id="resetOtpCode"
+               type="text"
+               inputmode="numeric"
+               maxlength="6"
+               placeholder="Enter 6-digit OTP">
+
+        <button onclick="verifyResetOtp()">Verify OTP</button>
+        <button onclick="sendResetOtp(true)">Resend OTP</button>
+    </section>
+
+    <!-- NEW PASSWORD -->
+    <section id="resetPasswordSection" class="card auth-box hidden">
+        <h2>Set New Password</h2>
+
+        <label>New Password</label>
+        <div class="password-box">
+            <input id="newPassword"
+                   type="password"
+                   placeholder="Enter new password">
+            <button type="button"
+                    class="show-password"
+                    onclick="togglePassword('newPassword', this)">
+                Show
+            </button>
+        </div>
+
+        <button onclick="resetPassword()">Change Password</button>
+    </section>
+
+    <!-- REGISTER -->
+    <section id="registerSection" class="card auth-box hidden">
+        <h2>Register</h2>
+
+        <label>Name</label>
+        <input id="regName" placeholder="Enter name">
+
+        <label>Email</label>
+        <input id="regEmail" type="email" placeholder="Enter email address">
+
+        <label>Mobile Number</label>
+        <input id="regMobile" type="tel" maxlength="10" inputmode="numeric" placeholder="Enter 10-digit mobile number">
+
+        <label>Password</label>
+        <div class="password-wrap">
+            <input id="regPassword" type="password" placeholder="Enter password">
+            <button type="button" class="password-toggle" onclick="togglePassword('regPassword', this)">Show</button>
+        </div>
+
+        <label>Account Type</label>
+        <select id="regRole">
+            <option value="BUYER">Buyer</option>
+            <option value="SELLER">Seller</option>
+        </select>
+
+        <button onclick="register()">Register</button>
+
+        <p class="small">
+            Already registered?
+            <a href="#" onclick="showLogin()">Login</a>
+        </p>
+    </section>
+
+
+    <!-- OTP VERIFICATION -->
+    <section id="otpSection" class="card auth-box hidden">
+        <h2>Verify OTP</h2>
+        <p class="small">
+            A 6-digit OTP was sent to your email. Enter it below to activate your account.
+        </p>
+
+        <label>Email</label>
+        <input id="otpEmail" type="email" readonly>
+
+        <label>OTP</label>
+        <input id="otpCode"
+               type="text"
+               inputmode="numeric"
+               maxlength="6"
+               placeholder="Enter 6-digit OTP">
+
+        <button onclick="verifyOtp()">Verify OTP</button>
+        <button onclick="resendOtp()">Resend OTP</button>
+
+        <p class="small">
+            Already verified?
+            <a href="#" onclick="showLogin()">Login</a>
+        </p>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="productsSection" class="hidden">
+        <div class="hero">
+            <div>
+                <span class="badge">VISHNURAJMART MARKETPLACE</span>
+                <h1>Simple shopping, powered by a strong backend.</h1>
+                <p>Browse products added by sellers, search by category, add items to cart and place orders. The interface is intentionally clean so the project can focus on database and backend functionality.</p>
+            </div>
+            <div class="hero-img"></div>
+        </div>
+
+        <div class="toolbar">
+            <input id="productSearch" placeholder="Search products, category or seller..." oninput="filterProducts()">
+            <div class="chips">
+                <button class="chip active" onclick="setCategory('ALL',this)">All</button>
+                <button class="chip" onclick="setCategory('Electronics',this)">Electronics</button>
+                <button class="chip" onclick="setCategory('Accessories',this)">Accessories</button>
+                <button class="chip" onclick="setCategory('Other',this)">Other</button>
+            </div>
+        </div>
+
+        <div id="productsList" class="products"></div>
+    </section>
+
+    <!-- CART -->
+    <section id="cartSection" class="hidden">
+        <div class="card">
+            <h2>My Cart</h2>
+            <div id="cartList"></div>
+            <h3 id="cartTotal">Total: ₹0</h3>
+            <button onclick="placeOrder()">Place Order</button>
+        </div>
+    </section>
+
+    <!-- BUYER ORDERS -->
+    <section id="buyerOrdersSection" class="hidden">
+        <h2>My Orders</h2>
+        <div id="buyerOrders"></div>
+    </section>
+
+    <!-- SELLER DASHBOARD -->
+    <section id="sellerSection" class="hidden">
+
+        <div class="card">
+            <div class="seller-form-title"><h2 id="productFormTitle">Add Product</h2><span class="small">Add clear photos to help buyers choose</span></div>
+
+            <div class="row">
+                <div>
+                    <label>Name</label>
+                    <input id="productName">
+                </div>
+
+                <div>
+                    <label>Category</label>
+                    <input id="productCategory">
+                </div>
+            </div>
+
+            <label>Description</label>
+            <textarea id="productDescription"></textarea>
+
+            <div class="row">
+                <div>
+                    <label>Price</label>
+                    <input id="productPrice" type="number" min="0">
+                </div>
+
+                <div>
+                    <label>Stock</label>
+                    <input id="productStock" type="number" min="0">
+                </div>
+            </div>
+
+            <label>Product Image</label>
+            <div class="image-uploader">
+                <img id="productImagePreview" class="image-preview" src="https://placehold.co/300x260?text=Product+Photo" alt="Product image preview">
+                <div class="image-tools">
+                    <input id="productImageFile" type="file" accept="image/jpeg,image/png,image/webp">
+                    <span class="image-help">Choose JPG, PNG or WebP (max 5 MB). The image is resized before saving.</span>
+                    <label for="productImage">Or paste an image URL</label>
+                    <input id="productImage" type="url" placeholder="https://example.com/product.jpg">
+                    <button type="button" class="password-toggle" onclick="clearProductImage()">Remove image</button>
+                </div>
+            </div>
+
+            <button onclick="saveProduct()" id="productSaveButton">
+                Add Product
+            </button>
+
+            <button onclick="cancelEdit()" id="cancelEditButton" class="hidden">
+                Cancel Edit
+            </button>
+        </div>
+
+        <h2>My Products</h2>
+        <div id="sellerProducts"></div>
+
+    </section>
+
+    <!-- SELLER ORDERS -->
+    <section id="sellerOrdersSection" class="hidden">
+        <h2>Seller Orders</h2>
+        <div id="sellerOrders"></div>
+    </section>
+
+    <!-- PRODUCT REVIEWS -->
+    <section id="reviewsSection" class="hidden">
+        <div class="card">
+            <button class="password-toggle" onclick="showProducts()">← Back to products</button>
+            <h2 id="reviewsProductTitle">Product reviews</h2>
+            <div id="reviewsList"></div>
+            <div id="reviewForm" class="hidden">
+                <h3>Write a review</h3>
+                <label>Rating</label>
+                <select id="reviewRating"><option value="5">5 - Excellent</option><option value="4">4 - Good</option><option value="3">3 - Average</option><option value="2">2 - Poor</option><option value="1">1 - Bad</option></select>
+                <label>Comment</label>
+                <textarea id="reviewComment" maxlength="1000" placeholder="Share your experience after ordering this product"></textarea>
+                <button onclick="submitProductReview()">Submit review</button>
+            </div>
+            <p class="small">Only buyers who have ordered this product can submit a review.</p>
+        </div>
+    </section>
+
+    <!-- ADMIN PANEL -->
+    <section id="adminSection" class="hidden">
+        <h2>Admin Panel</h2>
+        <div class="card">
+            <h3>All users</h3>
+            <div id="adminUsers"><p>Loading users…</p></div>
+        </div>
+        <div class="card">
+            <h3>All orders</h3>
+            <div id="adminOrders"><p>Loading orders…</p></div>
+        </div>
+        <div class="card">
+            <h3>Product moderation</h3>
+            <div id="adminProducts"><p>Loading products…</p></div>
+        </div>
+    </section>
+
+</div>
+
+<footer>© 2026 VishnuRajMart · Shopping made simpler, every day.</footer>
+
+<!-- VishnuRajMart help chat -->
+<button id="chatLauncher" class="chat-launcher" type="button" aria-label="Open VishnuRajMart help chat" aria-expanded="false" onclick="toggleChat()">✦</button>
+<section id="chatPanel" class="chat-panel hidden" aria-label="VishnuRajMart help chat">
+  <div class="chat-header">
+    <div class="chat-avatar">✦</div>
+    <div class="chat-heading"><strong>VishnuRajMart AI</strong><span>AI shopping assistant</span></div>
+    <button class="chat-close" type="button" aria-label="Close chat" onclick="toggleChat(false)">✕</button>
+  </div>
+  <div id="chatMessages" class="chat-messages" aria-live="polite">
+    <div class="chat-bubble bot">Hi! 👋 I’m VishnuRajMart AI. Ask me in English or Tanglish about shopping, cart, orders, account/OTP, or seller products. I’ll be clear when I can’t verify live account details.</div>
+  </div>
+  <div class="chat-quick">
+    <button type="button" onclick="chatQuick('How do I place an order?')">Place order</button>
+    <button type="button" onclick="chatQuick('How do I track my order?')">My orders</button>
+    <button type="button" onclick="chatQuick('How do I add a product as a seller?')">Seller help</button>
+    <button type="button" onclick="chatQuick('I need login or registration help')">Account help</button>
+  </div>
+  <div class="chat-compose">
+    <input id="chatInput" type="text" maxlength="400" placeholder="Ask a question…" aria-label="Type your question">
+    <button id="chatSendButton" type="button" onclick="sendChatMessage()">Send</button>
+  </div>
+  <div class="chat-note">Automated help · It cannot view private orders or make changes.</div>
+</section>
+
+
+<script>
+let currentUser = null;
+let editingProductId = null;
+let allProducts = [];
+let activeCategory = 'ALL';
+let pendingVerificationEmail = '';
+let pendingResetEmail = '';
+let selectedProductImage = "";
+const fallbackProductImage = "https://placehold.co/500x350?text=Product";
+
+function setProductImagePreview(src) {
+    const preview = document.getElementById("productImagePreview");
+    if (preview) preview.src = src || fallbackProductImage;
+}
+
+function clearProductImage() {
+    selectedProductImage = "";
+    document.getElementById("productImageFile").value = "";
+    document.getElementById("productImage").value = "";
+    setProductImagePreview("");
+}
+
+function handleProductImageFile(event) {
+    const file = event.target.files && event.target.files[0];
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+        showMessage("Choose a JPG, PNG or WebP image");
+        event.target.value = "";
+        return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+        showMessage("Image must be 5 MB or smaller");
+        event.target.value = "";
+        return;
+    }
+    const reader = new FileReader();
+    reader.onerror = () => showMessage("Could not read this image");
+    reader.onload = () => {
+        const image = new Image();
+        image.onerror = () => showMessage("This image could not be opened");
+        image.onload = () => {
+            const scale = Math.min(1, 800 / Math.max(image.width, image.height));
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.width * scale));
+            canvas.height = Math.max(1, Math.round(image.height * scale));
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+                showMessage("Image processing is not supported in this browser");
+                return;
+            }
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            selectedProductImage = canvas.toDataURL("image/jpeg", 0.72);
+            document.getElementById("productImage").value = "";
+            setProductImagePreview(selectedProductImage);
+        };
+        image.src = String(reader.result);
+    };
+    reader.readAsDataURL(file);
+}
+
+function togglePassword(id, button) {
+    const input = document.getElementById(id);
+    if (!input) return;
+    const showing = input.type === "text";
+    input.type = showing ? "password" : "text";
+    button.textContent = showing ? "Show" : "Hide";
+}
+
+function hideSections() {
+    [
+        "loginSection",
+        "forgotSection",
+        "resetOtpSection",
+        "resetPasswordSection",
+        "registerSection",
+        "otpSection",
+        "productsSection",
+        "cartSection",
+        "buyerOrdersSection",
+        "sellerSection",
+        "sellerOrdersSection",
+        "reviewsSection",
+        "adminSection"
+    ].forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+    });
+}
+
+function showMessage(text) {
+    const box = document.getElementById("message");
+    box.innerHTML = `<div class="message">${escapeHtml(String(text))}</div>`;
+
+    setTimeout(() => {
+        box.innerHTML = "";
+    }, 3500);
+}
+
+function updateNav() {
+    document.getElementById("guestNav").classList.add("hidden");
+    document.getElementById("buyerNav").classList.add("hidden");
+    document.getElementById("sellerNav").classList.add("hidden");
+    document.getElementById("adminNav").classList.add("hidden");
+
+    if (!currentUser) {
+        document.getElementById("guestNav").classList.remove("hidden");
+        return;
+    }
+
+    if (currentUser.role === "BUYER") {
+        document.getElementById("buyerNav").classList.remove("hidden");
+    }
+
+    if (currentUser.role === "SELLER") {
+        document.getElementById("sellerNav").classList.remove("hidden");
+    }
+    if (currentUser.role === "ADMIN") {
+        document.getElementById("adminNav").classList.remove("hidden");
+    }
+}
+
+async function api(url, options = {}) {
+    const config = {
+        method: options.method || "GET",
+        headers: options.headers || {},
+        credentials: "same-origin"
+    };
+
+    if (options.body !== undefined) {
+        config.headers["Content-Type"] = "application/json";
+        config.body = JSON.stringify(options.body);
+    }
+
+    const response = await fetch(url, config);
+    const rawResponse = await response.text();
+    let data;
+    try {
+        data = rawResponse ? JSON.parse(rawResponse) : {};
+    } catch {
+        data = { status: "error", message: rawResponse || "Invalid server response" };
+    }
+
+    if (!response.ok) {
+        throw new Error(data.message || "Request failed");
+    }
+
+    return data;
+}
+
+async function checkLogin() {
+    try {
+        currentUser = await api("/me");
+        updateNav();
+
+        if (currentUser.role === "BUYER") {
+            showProducts();
+        } else if (currentUser.role === "SELLER") {
+            showSellerDashboard();
+        } else if (currentUser.role === "ADMIN") {
+            showAdminDashboard();
+        }
+    } catch {
+        currentUser = null;
+        updateNav();
+        showLogin();
+    }
+}
+
+function showLogin() {
+    hideSections();
+    document.getElementById("loginSection").classList.remove("hidden");
+}
+
+function showRegister() {
+    hideSections();
+    document.getElementById("registerSection").classList.remove("hidden");
+}
+
+
+function showForgotPassword() {
+    hideSections();
+    document.getElementById("forgotEmail").value =
+        document.getElementById("loginEmail").value || "";
+    document.getElementById("forgotSection").classList.remove("hidden");
+}
+
+function showResetOtp(email) {
+    hideSections();
+    pendingResetEmail = email || pendingResetEmail;
+    document.getElementById("resetOtpEmail").value = pendingResetEmail;
+    document.getElementById("resetOtpCode").value = "";
+    document.getElementById("resetOtpSection").classList.remove("hidden");
+}
+
+function showResetPassword() {
+    hideSections();
+    document.getElementById("newPassword").value = "";
+    document.getElementById("resetPasswordSection").classList.remove("hidden");
+}
+
+async function sendResetOtp(isResend = false) {
+    const email = isResend
+        ? document.getElementById("resetOtpEmail").value.trim()
+        : document.getElementById("forgotEmail").value.trim();
+
+    if (!email) {
+        showMessage("Email is required");
+        return;
+    }
+
+    try {
+        const data = await api("/forgot-password", {
+            method: "POST",
+            body: { email }
+        });
+
+        if (data.status === "error") {
+            showMessage(data.message);
+            return;
+        }
+
+        pendingResetEmail = data.email || email;
+        showMessage(data.message || "Reset OTP sent");
+        showResetOtp(pendingResetEmail);
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function verifyResetOtp() {
+    const email =
+        document.getElementById("resetOtpEmail").value.trim() ||
+        pendingResetEmail;
+
+    const otp =
+        document.getElementById("resetOtpCode").value.trim();
+
+    if (!email || !/^[0-9]{6}$/.test(otp)) {
+        showMessage("Enter the 6-digit OTP");
+        return;
+    }
+
+    try {
+        const data = await api("/verify-reset-otp", {
+            method: "POST",
+            body: { email, otp }
+        });
+
+        if (data.status === "error") {
+            showMessage(data.message);
+            return;
+        }
+
+        showMessage(data.message || "OTP verified");
+        showResetPassword();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function resetPassword() {
+    const email = pendingResetEmail;
+    const newPassword =
+        document.getElementById("newPassword").value;
+
+    if (
+        newPassword.length < 8 ||
+        !/[A-Z]/.test(newPassword) ||
+        !/[a-z]/.test(newPassword) ||
+        !/[0-9]/.test(newPassword) ||
+        !/[^A-Za-z0-9]/.test(newPassword)
+    ) {
+        showMessage(
+            "Password needs 8+ characters, uppercase, lowercase, number and symbol"
+        );
+        return;
+    }
+
+    try {
+        const data = await api("/reset-password", {
+            method: "POST",
+            body: {
+                email,
+                new_password: newPassword
+            }
+        });
+
+        if (data.status === "error") {
+            showMessage(data.message);
+            return;
+        }
+
+        showMessage(data.message || "Password changed successfully");
+        document.getElementById("loginEmail").value = email;
+        pendingResetEmail = "";
+        showLogin();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function showOtp(email) {
+    hideSections();
+    pendingVerificationEmail = email || pendingVerificationEmail;
+    document.getElementById("otpEmail").value = pendingVerificationEmail;
+    document.getElementById("otpCode").value = "";
+    document.getElementById("otpSection").classList.remove("hidden");
+}
+
+async function register() {
+    const name = document.getElementById("regName").value.trim();
+    const email = document.getElementById("regEmail").value.trim();
+    const mobile = document.getElementById("regMobile").value.trim();
+    const password = document.getElementById("regPassword").value;
+    const role = document.getElementById("regRole").value;
+
+    if (!name || !email || !mobile || !password) {
+        showMessage("All fields are required");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9._%+-]+@gmail\.com$/i.test(email)) {
+        showMessage("Enter a valid Gmail address");
+        return;
+    }
+
+    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+        showMessage("Enter a valid 10-digit Indian mobile number");
+        return;
+    }
+
+    if (
+        password.length < 8 ||
+        !/[A-Z]/.test(password) ||
+        !/[a-z]/.test(password) ||
+        !/[0-9]/.test(password) ||
+        !/[^A-Za-z0-9]/.test(password)
+    ) {
+        showMessage("Password needs 8+ characters, uppercase, lowercase, number and symbol");
+        return;
+    }
+
+    try {
+        const data = await api("/register", {
+            method: "POST",
+            body: { name, email, mobile, password, role }
+        });
+
+        if (data.status === "error") {
+            showMessage(data.message);
+            return;
+        }
+
+        if (data.verification_required) {
+            pendingVerificationEmail = data.email || email;
+            showMessage(data.message || "OTP sent. Verify your account.");
+            showOtp(pendingVerificationEmail);
+            return;
+        }
+
+        showMessage(data.message || "Registration successful");
+        document.getElementById("loginEmail").value = email;
+        showLogin();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function verifyOtp() {
+    const email =
+        document.getElementById("otpEmail").value.trim() ||
+        pendingVerificationEmail;
+
+    const otp = document.getElementById("otpCode").value.trim();
+
+    if (!email || !/^[0-9]{6}$/.test(otp)) {
+        showMessage("Enter the 6-digit OTP");
+        return;
+    }
+
+    try {
+        const data = await api("/verify-otp", {
+            method: "POST",
+            body: { email, otp }
+        });
+
+        if (data.status === "error") {
+            showMessage(data.message);
+            return;
+        }
+
+        showMessage(data.message || "Account verified successfully");
+        document.getElementById("loginEmail").value = email;
+        pendingVerificationEmail = "";
+        showLogin();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function resendOtp() {
+    const email =
+        document.getElementById("otpEmail").value.trim() ||
+        pendingVerificationEmail;
+
+    if (!email) {
+        showMessage("Email is required");
+        return;
+    }
+
+    try {
+        const data = await api("/resend-otp", {
+            method: "POST",
+            body: { email }
+        });
+
+        showMessage(data.message || "A new OTP was sent");
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function login() {
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    if (!email || !password) {
+        showMessage("Enter email and password");
+        return;
+    }
+
+    try {
+        const data = await api("/login", {
+            method: "POST",
+            body: { email, password }
+        });
+
+        currentUser = data;
+        updateNav();
+
+        showMessage("Login successful");
+
+        if (data.role === "BUYER") {
+            showProducts();
+        } else if (data.role === "SELLER") {
+            showSellerDashboard();
+        } else if (data.role === "ADMIN") {
+            showAdminDashboard();
+        }
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function logout() {
+    try {
+        await api("/logout", { method: "POST" });
+    } catch {}
+
+    currentUser = null;
+    updateNav();
+    showLogin();
+    showMessage("Logged out");
+}
+
+async function showProducts() {
+    if (!currentUser) {
+        showMessage("Please login to view products");
+        showLogin();
+        return;
+    }
+
+    hideSections();
+    document.getElementById("productsSection").classList.remove("hidden");
+
+    try {
+        allProducts = await api("/products");
+        filterProducts();
+        updateCartCount();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function setCategory(category, button) {
+    activeCategory = category;
+    document.querySelectorAll(".chip").forEach(x => x.classList.remove("active"));
+    if (button) button.classList.add("active");
+    filterProducts();
+}
+
+function filterProducts() {
+    const q = (document.getElementById("productSearch")?.value || "").trim().toLowerCase();
+
+    const filtered = allProducts.filter(product => {
+        const name = String(product.name || "").toLowerCase();
+        const category = String(product.category || "").toLowerCase();
+        const seller = String(product.seller || "").toLowerCase();
+
+        const searchMatch = name.includes(q) || category.includes(q) || seller.includes(q);
+
+        const categoryMatch =
+            activeCategory === "ALL" ||
+            category === activeCategory.toLowerCase() ||
+            (activeCategory === "Other" && !["electronics","accessories"].includes(category));
+
+        return searchMatch && categoryMatch;
+    });
+
+    renderProducts(filtered);
+}
+
+function renderProducts(products) {
+    const list = document.getElementById("productsList");
+
+    if (!products.length) {
+        list.innerHTML = '<div class="empty">No products found.</div>';
+        return;
+    }
+
+    list.innerHTML = products.map(product => `
+        <div class="product">
+            <img class="product-image"
+                 src="${escapeHtml(product.image_url || 'https://placehold.co/500x350?text=Product')}"
+                 alt="${escapeHtml(product.name)}"
+                 onerror="this.src='https://placehold.co/500x350?text=Product'">
+
+            <h3>${escapeHtml(product.name)}</h3>
+            <p class="small">${escapeHtml(product.description || "")}</p>
+            <p><span class="badge">${escapeHtml(product.category || "Other")}</span></p>
+            <p class="price">₹${Number(product.price).toFixed(2)}</p>
+            <p class="stock">${product.stock > 0 ? `In Stock: ${product.stock}` : "Out of Stock"}</p>
+            <p class="seller">Seller: ${escapeHtml(product.seller || "-")}</p>
+            <button class="password-toggle" onclick="showProductReviews(${product.id})">Reviews & ratings</button>
+
+            ${
+                currentUser && currentUser.role === "BUYER"
+                ? `
+                    <input type="number" min="1" max="${product.stock}" value="1"
+                           id="qty-${product.id}" ${product.stock <= 0 ? "disabled" : ""}>
+                    <button onclick="addToCart(${product.id}, ${product.stock})"
+                            ${product.stock <= 0 ? "disabled" : ""}>
+                        ${product.stock <= 0 ? "Out of Stock" : "Add to Cart"}
+                    </button>
+                  `
+                : ""
+            }
+        </div>
+    `).join("");
+}
+
+async function updateCartCount() {
+    if (!currentUser || currentUser.role !== "BUYER") return;
+
+    try {
+        const data = await api("/cart");
+        const count = (data.items || []).reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+        const badge = document.getElementById("cartCount");
+        if (badge) badge.textContent = count;
+    } catch {}
+}
+
+async function addToCart(productId, stock) {
+    const qty = Number(
+        document.getElementById(`qty-${productId}`).value
+    );
+
+    if (qty <= 0 || qty > stock) {
+        showMessage("Enter valid quantity");
+        return;
+    }
+
+    try {
+        const data = await api("/cart", {
+            method: "POST",
+            body: {
+                product_id: productId,
+                quantity: qty
+            }
+        });
+
+        showMessage(data.message || "Added to cart");
+        updateCartCount();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function showCart() {
+    hideSections();
+    document.getElementById("cartSection").classList.remove("hidden");
+
+    try {
+        const data = await api("/cart");
+
+        const list = document.getElementById("cartList");
+        const items = data.items || [];
+
+        if (items.length === 0) {
+            list.innerHTML = "<p>Cart is empty.</p>";
+            document.getElementById("cartTotal").textContent = "Total: ₹0";
+            return;
+        }
+
+        list.innerHTML = `
+            <table>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+
+                ${items.map(item => `
+                    <tr>
+                        <td>${escapeHtml(item.name)}</td>
+                        <td>₹${Number(item.price).toFixed(2)}</td>
+
+                        <td>
+                            <input
+                                style="width:75px"
+                                type="number"
+                                min="1"
+                                max="${item.stock}"
+                                value="${item.quantity}"
+                                id="cartqty-${item.cart_id}"
+                            >
+                        </td>
+
+                        <td>₹${Number(item.subtotal).toFixed(2)}</td>
+
+                        <td class="actions">
+                            <button onclick="updateCart(${item.cart_id})">
+                                Update
+                            </button>
+
+                            <button onclick="removeCart(${item.cart_id})">
+                                Remove
+                            </button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </table>
+        `;
+
+        document.getElementById("cartTotal").textContent =
+            `Total: ₹${Number(data.total || 0).toFixed(2)}`;
+
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function updateCart(cartId) {
+    const quantity = Number(
+        document.getElementById(`cartqty-${cartId}`).value
+    );
+
+    try {
+        const data = await api(`/cart/${cartId}`, {
+            method: "PUT",
+            body: { quantity }
+        });
+
+        showMessage(data.message);
+        showCart();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function removeCart(cartId) {
+    if (!confirm("Remove this item?")) return;
+
+    try {
+        const data = await api(`/cart/${cartId}`, {
+            method: "DELETE"
+        });
+
+        showMessage(data.message);
+        showCart();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function placeOrder() {
+    if (!confirm("Place this order?")) return;
+
+    try {
+        const data = await api("/orders", {
+            method: "POST"
+        });
+
+        showMessage(
+            `${data.message || "Order placed"} - Order #${data.order_id || ""}`
+        );
+
+        showBuyerOrders();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function showBuyerOrders() {
+    hideSections();
+    document.getElementById("buyerOrdersSection").classList.remove("hidden");
+
+    try {
+        const orders = await api("/orders");
+        const box = document.getElementById("buyerOrders");
+
+        if (!Array.isArray(orders) || orders.length === 0) {
+            box.innerHTML = "<p>No orders yet.</p>";
+            return;
+        }
+
+        box.innerHTML = `
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+
+                ${orders.map(order => `
+                    <tr>
+                        <td>${order.order_id}</td>
+                        <td>₹${Number(order.total).toFixed(2)}</td>
+                        <td>${escapeHtml(order.status)}</td>
+                        <td>${escapeHtml(order.created_at)}</td>
+                    </tr>
+                `).join("")}
+            </table>
+        `;
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function showSellerDashboard() {
+    hideSections();
+    document.getElementById("sellerSection").classList.remove("hidden");
+    await loadSellerProducts();
+}
+
+async function loadSellerProducts() {
+    try {
+        const products = await api("/seller/products");
+        const box = document.getElementById("sellerProducts");
+
+        if (!Array.isArray(products) || products.length === 0) {
+            box.innerHTML = '<div class="empty">No products added yet. Use the form above to add your first product.</div>';
+            window.sellerProductsCache = [];
+            return;
+        }
+
+        window.sellerProductsCache = products;
+        box.innerHTML = `<div class="seller-product-grid">
+            ${products.map(product => `
+                <article class="seller-product-card">
+                    <img src="${escapeHtml(product.image_url || fallbackProductImage)}"
+                         alt="${escapeHtml(product.name)}"
+                         onerror="this.onerror=null;this.src='https://placehold.co/500x350?text=Product'">
+                    <h3>${escapeHtml(product.name)}</h3>
+                    <p class="small">${escapeHtml(product.category || "Other")} · Stock: ${Number(product.stock) || 0}</p>
+                    <p class="price">₹${Number(product.price).toFixed(2)}</p>
+                    <div class="actions">
+                        <button onclick="editProductById(${Number(product.id)})">Edit</button>
+                        <button class="danger-button" onclick="deleteProduct(${Number(product.id)})">Delete</button>
+                    </div>
+                </article>
+            `).join("")}
+        </div>`;
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function editProductById(productId) {
+    const product = (window.sellerProductsCache || []).find(item => Number(item.id) === Number(productId));
+    if (product) editProduct(product);
+}
+
+async function saveProduct() {
+    const data = {
+        name: document.getElementById("productName").value.trim(),
+        description: document.getElementById("productDescription").value.trim(),
+        category: document.getElementById("productCategory").value.trim(),
+        price: Number(document.getElementById("productPrice").value),
+        stock: Number(document.getElementById("productStock").value),
+        image_url: selectedProductImage || document.getElementById("productImage").value.trim()
+    };
+
+    if (!data.name || !data.category || !Number.isFinite(data.price) || data.price <= 0 ||
+        !Number.isInteger(data.stock) || data.stock < 0) {
+        showMessage("Enter a name, category, positive price and valid stock quantity");
+        return;
+    }
+    if (data.image_url && !data.image_url.startsWith("data:image/") &&
+        !/^https?:\/\//i.test(data.image_url)) {
+        showMessage("Image URL must start with http:// or https://");
+        return;
+    }
+
+    try {
+        let response;
+
+        if (editingProductId) {
+            response = await api(`/products/${editingProductId}`, {
+                method: "PUT",
+                body: data
+            });
+        } else {
+            response = await api("/products", {
+                method: "POST",
+                body: data
+            });
+        }
+
+        showMessage(response.message);
+        clearProductForm();
+        loadSellerProducts();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function editProduct(product) {
+    editingProductId = product.id;
+
+    document.getElementById("productName").value =
+        product.name || "";
+
+    document.getElementById("productDescription").value =
+        product.description || "";
+
+    document.getElementById("productCategory").value =
+        product.category || "";
+
+    document.getElementById("productPrice").value =
+        product.price;
+
+    document.getElementById("productStock").value =
+        product.stock;
+
+    selectedProductImage = (product.image_url || "").startsWith("data:image/")
+        ? product.image_url : "";
+    document.getElementById("productImage").value =
+        selectedProductImage ? "" : (product.image_url || "");
+    document.getElementById("productImageFile").value = "";
+    setProductImagePreview(product.image_url || "");
+
+    document.getElementById("productFormTitle").textContent = "Edit Product";
+    document.getElementById("productSaveButton").textContent =
+        "Update Product";
+
+    document.getElementById("cancelEditButton")
+        .classList.remove("hidden");
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function cancelEdit() {
+    clearProductForm();
+}
+
+function clearProductForm() {
+    editingProductId = null;
+
+    [
+        "productName",
+        "productDescription",
+        "productCategory",
+        "productPrice",
+        "productStock",
+        "productImage"
+    ].forEach(id => {
+        document.getElementById(id).value = "";
+    });
+
+    document.getElementById("productSaveButton").textContent =
+        "Add Product";
+    document.getElementById("productFormTitle").textContent = "Add Product";
+    selectedProductImage = "";
+    document.getElementById("productImageFile").value = "";
+    setProductImagePreview("");
+
+    document.getElementById("cancelEditButton")
+        .classList.add("hidden");
+}
+
+async function deleteProduct(productId) {
+    if (!confirm("Delete this product?")) return;
+
+    try {
+        const data = await api(`/products/${productId}`, {
+            method: "DELETE"
+        });
+
+        showMessage(data.message);
+        loadSellerProducts();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function showSellerOrders() {
+    hideSections();
+    document.getElementById("sellerOrdersSection").classList.remove("hidden");
+
+    try {
+        const orders = await api("/seller/orders");
+        const box = document.getElementById("sellerOrders");
+
+        if (!Array.isArray(orders) || orders.length === 0) {
+            box.innerHTML = "<p>No seller orders.</p>";
+            return;
+        }
+
+        box.innerHTML = `
+            <table>
+                <tr>
+                    <th>Order</th>
+                    <th>Buyer</th>
+                    <th>Product</th>
+                    <th>Qty</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>Change Status</th>
+                </tr>
+
+                ${orders.map(order => `
+                    <tr>
+                        <td>${order.order_id}</td>
+                        <td>${escapeHtml(order.buyer)}</td>
+                        <td>${escapeHtml(order.product)}</td>
+                        <td>${order.quantity}</td>
+                        <td>₹${Number(order.price).toFixed(2)}</td>
+                        <td>${escapeHtml(order.status)}</td>
+
+                        <td>
+                            <select id="status-${order.order_id}">
+                                <option value="PROCESSING">PROCESSING</option>
+                                <option value="SHIPPED">SHIPPED</option>
+                                <option value="DELIVERED">DELIVERED</option>
+                            </select>
+
+                            <button onclick="updateOrderStatus(${order.order_id})">
+                                Update
+                            </button>
+                        </td>
+                    </tr>
+                `).join("")}
+            </table>
+        `;
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function updateOrderStatus(orderId) {
+    const status =
+        document.getElementById(`status-${orderId}`).value;
+
+    try {
+        const data = await api(`/orders/status/${orderId}`, {
+            method: "PUT",
+            body: { status }
+        });
+
+        showMessage(data.message);
+        showSellerOrders();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+
+let activeReviewProductId = 0;
+
+async function showProductReviews(productId) {
+    activeReviewProductId = Number(productId);
+    const selectedProduct = allProducts.find(p => Number(p.id) === activeReviewProductId);
+    const productName = selectedProduct ? selectedProduct.name : ("Product #" + activeReviewProductId);
+    hideSections();
+    document.getElementById("reviewsSection").classList.remove("hidden");
+    document.getElementById("reviewsProductTitle").textContent = "Reviews: " + productName;
+    document.getElementById("reviewsList").innerHTML = "<p>Loading reviews…</p>";
+    document.getElementById("reviewForm").classList.toggle("hidden", !currentUser || currentUser.role !== "BUYER");
+    try {
+        const reviews = await api("/products/" + activeReviewProductId + "/reviews");
+        const box = document.getElementById("reviewsList");
+        if (!Array.isArray(reviews) || reviews.length === 0) {
+            box.innerHTML = "<p>No reviews yet. Be the first to review after ordering.</p>";
+            return;
+        }
+        box.innerHTML = reviews.map(r => `
+            <article class="card">
+                <strong>${escapeHtml(r.buyer || "Buyer")}</strong>
+                <span aria-label="rating">${"★".repeat(Number(r.rating))}${"☆".repeat(5-Number(r.rating))}</span>
+                <p>${escapeHtml(r.comment || "")}</p>
+                <p class="small">${escapeHtml(r.created_at || "")}</p>
+            </article>`).join("");
+    } catch (error) {
+        document.getElementById("reviewsList").textContent = error.message;
+    }
+}
+
+async function submitProductReview() {
+    if (!currentUser || currentUser.role !== "BUYER") {
+        showMessage("Please log in as a buyer");
+        return;
+    }
+    try {
+        const data = await api("/products/" + activeReviewProductId + "/reviews", {
+            method: "POST",
+            body: {
+                rating: Number(document.getElementById("reviewRating").value),
+                comment: document.getElementById("reviewComment").value.trim()
+            }
+        });
+        showMessage(data.message || "Review saved");
+        document.getElementById("reviewComment").value = "";
+        await showProductReviews(activeReviewProductId);
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+async function showAdminDashboard() {
+    if (!currentUser || currentUser.role !== "ADMIN") {
+        showMessage("Admin access only");
+        return;
+    }
+    hideSections();
+    document.getElementById("adminSection").classList.remove("hidden");
+    try {
+        const [users, orders, products] = await Promise.all([
+            api("/admin/users"), api("/admin/orders"), api("/products")
+        ]);
+        document.getElementById("adminUsers").innerHTML = Array.isArray(users) && users.length
+            ? `<div class="table-wrap"><table><tr><th>ID</th><th>Name</th><th>Email</th><th>Mobile</th><th>Role</th><th>Verified</th></tr>${users.map(u => `<tr><td>${u.id}</td><td>${escapeHtml(u.name)}</td><td>${escapeHtml(u.email)}</td><td>${escapeHtml(u.mobile)}</td><td>${escapeHtml(u.role)}</td><td>${u.verified ? "Yes" : "No"}</td></tr>`).join("")}</table></div>`
+            : "<p>No users found.</p>";
+        document.getElementById("adminOrders").innerHTML = Array.isArray(orders) && orders.length
+            ? `<div class="table-wrap"><table><tr><th>Order</th><th>Buyer</th><th>Email</th><th>Total</th><th>Status</th><th>Created</th></tr>${orders.map(o => `<tr><td>${o.order_id}</td><td>${escapeHtml(o.buyer)}</td><td>${escapeHtml(o.email)}</td><td>₹${Number(o.total).toFixed(2)}</td><td>${escapeHtml(o.status)}</td><td>${escapeHtml(o.created_at)}</td></tr>`).join("")}</table></div>`
+            : "<p>No orders found.</p>";
+        document.getElementById("adminProducts").innerHTML = Array.isArray(products) && products.length
+            ? `<div class="table-wrap"><table><tr><th>ID</th><th>Product</th><th>Seller</th><th>Price</th><th>Stock</th><th>Action</th></tr>${products.map(p => `<tr><td>${p.id}</td><td>${escapeHtml(p.name)}</td><td>${escapeHtml(p.seller)}</td><td>₹${Number(p.price).toFixed(2)}</td><td>${p.stock}</td><td><button onclick="adminRemoveProduct(${p.id})">Remove</button></td></tr>`).join("")}</table></div>`
+            : "<p>No products found.</p>";
+    } catch (error) {
+        showMessage("Admin panel could not load: " + error.message);
+    }
+}
+
+async function adminRemoveProduct(productId) {
+    if (!confirm("Remove this product? This action cannot be undone.")) return;
+    try {
+        const result = await api("/admin/products/" + productId, { method: "DELETE" });
+        showMessage(result.message || "Product removed");
+        await showAdminDashboard();
+    } catch (error) {
+        showMessage(error.message);
+    }
+}
+
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+const productImageFileInput = document.getElementById("productImageFile");
+if (productImageFileInput) productImageFileInput.addEventListener("change", handleProductImageFile);
+const productImageUrlInput = document.getElementById("productImage");
+if (productImageUrlInput) productImageUrlInput.addEventListener("input", () => {
+    selectedProductImage = "";
+    document.getElementById("productImageFile").value = "";
+    setProductImagePreview(productImageUrlInput.value.trim());
+});
+
+
+/* Server-backed AI shopping assistant */
+const chatHistory = [];
+
+function toggleChat(forceOpen) {
+    const panel = document.getElementById("chatPanel");
+    const launcher = document.getElementById("chatLauncher");
+    const shouldOpen = typeof forceOpen === "boolean" ? forceOpen : panel.classList.contains("hidden");
+    panel.classList.toggle("hidden", !shouldOpen);
+    launcher.setAttribute("aria-expanded", String(shouldOpen));
+    if (shouldOpen) document.getElementById("chatInput").focus();
+}
+
+function addChatBubble(text, who, extraClass = "") {
+    const list = document.getElementById("chatMessages");
+    const bubble = document.createElement("div");
+    bubble.className = "chat-bubble " + who + (extraClass ? " " + extraClass : "");
+    bubble.textContent = text;
+    list.appendChild(bubble);
+    list.scrollTop = list.scrollHeight;
+    return bubble;
+}
+
+async function sendChatMessage(message) {
+    const input = document.getElementById("chatInput");
+    const sendButton = document.getElementById("chatSendButton");
+    const text = (typeof message === "string" ? message : input.value).trim();
+    if (!text || sendButton.disabled) return;
+    if (text.length > 1200) {
+        addChatBubble("Please keep your question under 1,200 characters.", "bot");
+        return;
+    }
+
+    addChatBubble(text, "user");
+    input.value = "";
+    sendButton.disabled = true;
+    input.disabled = true;
+    const thinking = addChatBubble("Thinking…", "bot", "chat-thinking");
+
+    try {
+        const response = await fetch("/chatbot/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "same-origin",
+            body: JSON.stringify({
+                message: text,
+                history: chatHistory.slice(-8)
+            })
+        });
+        const raw = await response.text();
+        let data = {};
+        try { data = raw ? JSON.parse(raw) : {}; }
+        catch { throw new Error("The assistant returned an unreadable response."); }
+
+        thinking.remove();
+        if (!response.ok || data.status === "error" || !data.answer) {
+            addChatBubble(data.message || "The AI assistant is temporarily unavailable. Please try again.", "bot");
+            return;
+        }
+
+        addChatBubble(data.answer, "bot");
+        chatHistory.push({ role: "user", text: text });
+        chatHistory.push({ role: "model", text: data.answer });
+        if (chatHistory.length > 12) chatHistory.splice(0, chatHistory.length - 12);
+    } catch (error) {
+        thinking.remove();
+        addChatBubble(error.message || "Could not reach the AI assistant. Please try again.", "bot");
+    } finally {
+        sendButton.disabled = false;
+        input.disabled = false;
+        input.focus();
+    }
+}
+
+function chatQuick(message) {
+    if (document.getElementById("chatPanel").classList.contains("hidden")) toggleChat(true);
+    sendChatMessage(message);
+}
+
+const chatInput = document.getElementById("chatInput");
+if (chatInput) chatInput.addEventListener("keydown", event => {
+    if (event.key === "Enter" && !event.shiftKey) {
+        event.preventDefault();
+        sendChatMessage();
+    }
+});
+
+checkLogin();
+</script>
+
+</body>
+</html>
