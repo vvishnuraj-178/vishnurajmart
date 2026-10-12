@@ -12,6 +12,7 @@ RUN apt-get update \
        pkg-config \
        libdrogon-dev \
        libjsoncpp-dev \
+       uuid-dev \
        libcurl4-openssl-dev \
        libpq-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -33,6 +34,7 @@ RUN apt-get update \
        libcurl4t64 \
        libpq5 \
        libjsoncpp26 \
+       libuuid1 \
     && rm -rf /var/lib/apt/lists/* \
     && useradd --system --uid 10001 --create-home app
 
