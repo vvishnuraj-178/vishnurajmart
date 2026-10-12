@@ -2020,6 +2020,73 @@ public:
         PQclear(r);PQfinish(conn);Json::StreamWriterBuilder w;return Json::writeString(w,rows);
     }
 
+    static std::string adminDeleteUser(int userId, int actingAdminId)
+    {
+        if (userId <= 0)
+            return jsonMessage("error", "Invalid user ID");
+        if (userId == actingAdminId)
+            return jsonMessage("error", "You cannot delete your own account");
+
+        PGconn *conn = connect();
+        if (!connectionOk(conn)) {
+            std::string error = conn ? PQerrorMessage(conn) : "Database connection failed";
+            if (conn) PQfinish(conn);
+            return jsonMessage("error", error);
+        }
+
+        std::string id = std::to_string(userId);
+        const char *values[1] = { id.c_str() };
+        PGresult *check = PQexecParams(
+            conn,
+            "SELECT role, EXISTS (SELECT 1 FROM orders WHERE buyer_id=users.id), "
+            "EXISTS (SELECT 1 FROM order_items WHERE seller_id=users.id) "
+            "FROM users WHERE id=$1::int",
+            1, nullptr, values, nullptr, nullptr, 0);
+
+        if (!check || PQresultStatus(check) != PGRES_TUPLES_OK) {
+            std::string error = check ? PQerrorMessage(conn) : "Could not check user account";
+            if (check) PQclear(check);
+            PQfinish(conn);
+            return jsonMessage("error", error);
+        }
+        if (PQntuples(check) == 0) {
+            PQclear(check);
+            PQfinish(conn);
+            return jsonMessage("error", "User not found");
+        }
+
+        std::string role = PQgetvalue(check, 0, 0);
+        bool hasBuyerOrders = std::string(PQgetvalue(check, 0, 1)) == "t";
+        bool hasSellerOrders = std::string(PQgetvalue(check, 0, 2)) == "t";
+        PQclear(check);
+
+        if (role == "ADMIN") {
+            PQfinish(conn);
+            return jsonMessage("error", "Admin accounts are protected and cannot be deleted here");
+        }
+        if (hasBuyerOrders || hasSellerOrders) {
+            PQfinish(conn);
+            return jsonMessage("error", "This user has order history. The account was not deleted so order records stay intact.");
+        }
+
+        PGresult *deleted = PQexecParams(
+            conn,
+            "DELETE FROM users WHERE id=$1::int AND role <> 'ADMIN'",
+            1, nullptr, values, nullptr, nullptr, 0);
+        if (!deleted || PQresultStatus(deleted) != PGRES_COMMAND_OK) {
+            if (deleted) PQclear(deleted);
+            PQfinish(conn);
+            return jsonMessage("error", "Could not delete this user because related records still exist");
+        }
+
+        int changed = std::atoi(PQcmdTuples(deleted));
+        PQclear(deleted);
+        PQfinish(conn);
+        if (changed == 0)
+            return jsonMessage("error", "User not found or cannot be deleted");
+        return jsonMessage("success", "User deleted successfully");
+    }
+
     static std::string adminOrders()
     {
         PGconn *conn=connect();
@@ -2836,6 +2903,15 @@ int main()
             if(!hasRole(req,"ADMIN")){callback(jsonError(k403Forbidden,"Admin access only"));return;}
             auto resp=HttpResponse::newHttpResponse();resp->setContentTypeCode(CT_APPLICATION_JSON);resp->setBody(Database::adminUsers());callback(resp);
         }, {Get});
+
+    app().registerHandler("/admin/users/{1}",
+        [](const HttpRequestPtr &req,std::function<void(const HttpResponsePtr &)> &&callback,int userId)
+        {
+            if(!hasRole(req,"ADMIN")){callback(jsonError(k403Forbidden,"Admin access only"));return;}
+            auto session = req->session();
+            int adminId = session->get<int>("user_id");
+            auto resp=HttpResponse::newHttpResponse();resp->setContentTypeCode(CT_APPLICATION_JSON);resp->setBody(Database::adminDeleteUser(userId,adminId));callback(resp);
+        }, {Delete});
 
     app().registerHandler("/admin/orders",
         [](const HttpRequestPtr &req,std::function<void(const HttpResponsePtr &)> &&callback)
