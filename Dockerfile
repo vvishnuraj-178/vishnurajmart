@@ -13,6 +13,12 @@ RUN apt-get update \
        libdrogon-dev \
        libjsoncpp-dev \
        uuid-dev \
+       libsqlite3-dev \
+       libmariadb-dev \
+       libbrotli-dev \
+       libhiredis-dev \
+       libyaml-cpp-dev \
+       libc-ares-dev \
        libcurl4-openssl-dev \
        libpq-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -35,6 +41,12 @@ RUN apt-get update \
        libpq5 \
        libjsoncpp26 \
        libuuid1 \
+       libsqlite3-0 \
+       libmariadb3 \
+       libbrotli1 \
+       libhiredis1.1.0 \
+       libyaml-cpp0.8 \
+       libcares2 \
     && rm -rf /var/lib/apt/lists/* \
     && useradd --system --uid 10001 --create-home app
 
